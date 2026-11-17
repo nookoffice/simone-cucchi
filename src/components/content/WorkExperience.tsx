@@ -1,6 +1,7 @@
 "use client";
 
 import type { StaticImageData } from "next/image";
+import Link from "next/link";
 import { type CSSProperties, useState } from "react";
 import { Styles } from "@/utils/styles";
 import burberry from "@/assets/work/burberry.png";
@@ -65,7 +66,7 @@ export default function WorkExperience() {
           </span>
           {/* Shown only while a project is active. */}
           <nav className="work_topnav" aria-label="Sections">
-            <a className="work_label" href="/work">Work</a>
+            <Link className="work_label" href="/work">Work</Link>
             <a className="work_label" href="#">About</a>
             <a className="work_label" href="#">Misc</a>
           </nav>
@@ -76,10 +77,10 @@ export default function WorkExperience() {
           <div className="work_lead">
             {/* Side nav by default; a "back home" minus while a project is active. */}
             <nav className="work_sidenav" aria-label="Primary">
-              <a className="work_label work_name" href="/">Simone Cucchi</a>
+              <Link className="work_label work_name" href="/">Simone Cucchi</Link>
               <ul className="work_nav_list">
                 <li>
-                  <a className="work_label" href="/work">Work</a>
+                  <Link className="work_label" href="/work">Work</Link>
                 </li>
                 <li>
                   <a className="work_label" href="#">About</a>
@@ -89,11 +90,11 @@ export default function WorkExperience() {
                 </li>
               </ul>
             </nav>
-            <a className="work_minus" href="/" aria-label="Back to home">
+            <Link className="work_minus" href="/" aria-label="Back to home">
               <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
                 <path d="M0 22H44" stroke="currentColor" strokeWidth="2" />
               </svg>
-            </a>
+            </Link>
           </div>
           <a className="work_plus" href="#" aria-label="Next">
             <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">

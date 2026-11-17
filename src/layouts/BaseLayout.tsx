@@ -84,21 +84,28 @@ const pageCss = `
   }
 
   ::view-transition-old(.page-fade) {
-    animation: 400ms ease both page-fade reverse;
-    object-fit: none;
-    object-position: 0 calc(-1 * var(--page-scroll, 0px));
+    animation: 450ms var(--open-ease, ease) both page-slide-out;
   }
 
   ::view-transition-new(.page-fade) {
-    animation: 400ms ease 120ms both page-fade;
+    animation: 450ms var(--open-ease, ease) both page-slide-in;
   }
 
-  @keyframes page-fade {
+  @keyframes page-slide-out {
+    to {
+      opacity: 0;
+      transform: translateX(-4%);
+    }
+  }
+
+  @keyframes page-slide-in {
     from {
       opacity: 0;
+      transform: translateX(6%);
     }
     to {
       opacity: 1;
+      transform: translateX(0);
     }
   }
 

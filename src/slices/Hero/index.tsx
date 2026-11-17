@@ -1,5 +1,6 @@
 import type { Content } from "@prismicio/client";
 import type { SliceComponentProps } from "@prismicio/react";
+import Link from "next/link";
 import heroObject from "./hero-object.jpg";
 import "./index.css";
 
@@ -8,7 +9,7 @@ export type HeroProps = SliceComponentProps<Content.HeroSlice>;
 
 /** Fixed brand marks in the hero frame. Promote to fields if they ever vary. */
 const NAV_LINKS = [
-  { label: "Work", href: "#" },
+  { label: "Work", href: "/work" },
   { label: "About", href: "#" },
   { label: "Contact", href: "#" },
 ];
@@ -49,24 +50,32 @@ export default function Hero({ slice }: HeroProps) {
 
         <div className="hero_row hero_row-mid">
           <nav className="hero_nav" aria-label="Primary">
-            <a className="hero_label hero_name" href="/">
+            <Link className="hero_label hero_name" href="/">
               Simone Cucchi
-            </a>
+            </Link>
             <ul className="hero_nav_list">
-              {NAV_LINKS.map((item) => (
-                <li key={item.label}>
-                  <a className="hero_label hero_link" href={item.href}>
-                    {item.label}
-                  </a>
-                </li>
-              ))}
+              {NAV_LINKS.map((item) =>
+                item.href.startsWith("/") ? (
+                  <li key={item.label}>
+                    <Link className="hero_label hero_link" href={item.href}>
+                      {item.label}
+                    </Link>
+                  </li>
+                ) : (
+                  <li key={item.label}>
+                    <a className="hero_label hero_link" href={item.href}>
+                      {item.label}
+                    </a>
+                  </li>
+                ),
+              )}
             </ul>
           </nav>
-          <a className="hero_plus" href="/work" aria-label="Work">
+          <Link className="hero_plus" href="/work" aria-label="Work">
             <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
               <path d="M22 0V44M0 22H44" stroke="currentColor" strokeWidth="2" />
             </svg>
-          </a>
+          </Link>
         </div>
 
         <div className="hero_row hero_row-bottom">
