@@ -1,0 +1,24 @@
+@layer components {
+  .csp_section {
+    background-color: #0a0607;
+    color: var(--light-100);
+    padding: var(--section-space-medium) var(--site-margin);
+  }
+  .csp_row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: clamp(1rem, 3vw, 2.5rem);
+    flex-wrap: wrap;
+  }
+  .csp_phone {
+    width: clamp(10rem, 20vw, 16rem);
+    height: auto;
+    border-radius: var(--radius-main);
+  }
+  .csp_phone-raised { transform: translateY(-8%); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .csp_phone-raised { transform: none; }
+  }
+}

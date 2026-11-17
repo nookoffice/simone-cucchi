@@ -1,0 +1,21 @@
+{
+  "id": "next_project",
+  "name": "NextProject",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "A full-bleed link to the next project",
+      "docURL": "",
+      "imageUrl": "",
+      "version": "",
+      "primary": {
+        "title": { "type": "Text", "config": { "label": "Title", "placeholder": "Next project" } },
+        "subtitle": { "type": "Text", "config": { "label": "Subtitle", "placeholder": "Disciplines" } },
+        "image": { "type": "Image", "config": { "label": "Background", "constraint": {}, "thumbnails": [] } },
+        "link": { "type": "Link", "config": { "label": "Link", "allowTargetBlank": true } }
+      }
+    }
+  ]
+}

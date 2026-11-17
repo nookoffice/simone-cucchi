@@ -1,0 +1,29 @@
+{
+  "id": "stat_grid",
+  "name": "StatGrid",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "A row of headline statistics",
+      "docURL": "",
+      "imageUrl": "",
+      "version": "",
+      "primary": {
+        "eyebrow": { "type": "Text", "config": { "label": "Eyebrow", "placeholder": "Section label" } },
+        "caption": { "type": "Text", "config": { "label": "Caption", "placeholder": "e.g. Change YOY" } },
+        "stats": {
+          "type": "Group",
+          "config": {
+            "label": "Stats",
+            "fields": {
+              "value": { "type": "Text", "config": { "label": "Value", "placeholder": "+24%" } },
+              "label": { "type": "Text", "config": { "label": "Label", "placeholder": "What it measures" } }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

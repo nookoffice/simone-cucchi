@@ -1,0 +1,21 @@
+@layer components {
+  .csl_section {
+    background-color: #0a0607;
+    color: var(--light-100);
+    padding: var(--section-space-medium) var(--site-margin);
+  }
+  .csl_eyebrow {
+    font-family: var(--primary-family);
+    font-size: var(--text-small);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin: 0 0 var(--space-6);
+  }
+  .csl_text {
+    max-width: 22ch;
+    font-family: var(--secondary-family);
+    color: var(--light-100);
+    margin: 0;
+  }
+}

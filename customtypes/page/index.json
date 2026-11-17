@@ -11,7 +11,32 @@
       },
       "slices": {
         "config": {
-          "choices": {}
+          "choices": {
+            "work_list": {
+              "type": "SharedSlice"
+            },
+            "case_study_hero": {
+              "type": "SharedSlice"
+            },
+            "phone_screens": {
+              "type": "SharedSlice"
+            },
+            "section_image": {
+              "type": "SharedSlice"
+            },
+            "stat_grid": {
+              "type": "SharedSlice"
+            },
+            "lead_statement": {
+              "type": "SharedSlice"
+            },
+            "credit_list": {
+              "type": "SharedSlice"
+            },
+            "next_project": {
+              "type": "SharedSlice"
+            }
+          }
         },
         "fieldset": "Slice Zone",
         "type": "Slices"

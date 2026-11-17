@@ -1,0 +1,19 @@
+{
+  "id": "lead_statement",
+  "name": "LeadStatement",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "An eyebrow above a large serif statement",
+      "docURL": "",
+      "imageUrl": "",
+      "version": "",
+      "primary": {
+        "eyebrow": { "type": "Text", "config": { "label": "Eyebrow", "placeholder": "Section label" } },
+        "text": { "type": "StructuredText", "config": { "label": "Statement", "allowTargetBlank": false, "single": "paragraph" } }
+      }
+    }
+  ]
+}

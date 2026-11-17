@@ -106,7 +106,7 @@ interface HomepageDocumentData {
  */
 export type HomepageDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<HomepageDocumentData>, "homepage", Lang>;
 
-type PageDocumentDataSlicesSlice = never
+type PageDocumentDataSlicesSlice = WorkListSlice | CaseStudyHeroSlice | PhoneScreensSlice | SectionImageSlice | StatGridSlice | LeadStatementSlice | CreditListSlice | NextProjectSlice
 
 /**
  * Content for Page documents
@@ -335,6 +335,378 @@ type HeroSliceVariation = HeroSliceDefault
  */
 export type HeroSlice = prismic.SharedSlice<"hero", HeroSliceVariation>;
 
+/**
+ * Item in *WorkList → Default → Primary → Projects*
+ */
+export interface WorkListSliceDefaultPrimaryProjectsItem {
+	/**
+	 * Title field in *WorkList → Default → Primary → Projects*
+	 *
+	 * - **Field Type**: Text
+	 * - **Placeholder**: Project name
+	 * - **API ID Path**: work_list.default.primary.projects[].title
+	 * - **Documentation**: https://prismic.io/docs/fields/text
+	 */
+	title: prismic.KeyTextField;
+	
+	/**
+	 * Brand colour field in *WorkList → Default → Primary → Projects*
+	 *
+	 * - **Field Type**: Color
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: work_list.default.primary.projects[].accent
+	 * - **Documentation**: https://prismic.io/docs/fields/color
+	 */
+	accent: prismic.ColorField;
+	
+	/**
+	 * Teaser field in *WorkList → Default → Primary → Projects*
+	 *
+	 * - **Field Type**: Image
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: work_list.default.primary.projects[].image
+	 * - **Documentation**: https://prismic.io/docs/fields/image
+	 */
+	image: prismic.ImageField<never>;
+	
+	/**
+	 * Case study field in *WorkList → Default → Primary → Projects*
+	 *
+	 * - **Field Type**: Link
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: work_list.default.primary.projects[].link
+	 * - **Documentation**: https://prismic.io/docs/fields/link
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Primary content in *WorkList → Default → Primary*
+ */
+export interface WorkListSliceDefaultPrimary {
+	/**
+	 * Projects field in *WorkList → Default → Primary*
+	 *
+	 * - **Field Type**: Group
+	 * - **Placeholder**: *None*
+	 * - **API ID Path**: work_list.default.primary.projects[]
+	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+	 */
+	projects: prismic.GroupField<Simplify<WorkListSliceDefaultPrimaryProjectsItem>>;
+}
+
+/**
+ * Default variation for WorkList Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WorkListSliceDefault = prismic.SharedSliceVariation<"default", Simplify<WorkListSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *WorkList*
+ */
+type WorkListSliceVariation = WorkListSliceDefault
+
+/**
+ * WorkList Shared Slice
+ *
+ * - **API ID**: `work_list`
+ * - **Description**: *None*
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type WorkListSlice = prismic.SharedSlice<"work_list", WorkListSliceVariation>;
+
+/**
+ * Primary content in *CaseStudyHero → Default → Primary*
+ */
+export interface CaseStudyHeroSliceDefaultPrimary {
+	/**
+	 * Title field in *CaseStudyHero → Default → Primary*
+	 */
+	title: prismic.KeyTextField;
+
+	/**
+	 * Intro field in *CaseStudyHero → Default → Primary*
+	 */
+	intro: prismic.RichTextField;
+
+	/**
+	 * Background field in *CaseStudyHero → Default → Primary*
+	 */
+	image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for CaseStudyHero Slice
+ */
+export type CaseStudyHeroSliceDefault = prismic.SharedSliceVariation<"default", Simplify<CaseStudyHeroSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *CaseStudyHero*
+ */
+type CaseStudyHeroSliceVariation = CaseStudyHeroSliceDefault
+
+/**
+ * CaseStudyHero Shared Slice
+ *
+ * - **API ID**: `case_study_hero`
+ */
+export type CaseStudyHeroSlice = prismic.SharedSlice<"case_study_hero", CaseStudyHeroSliceVariation>;
+
+/**
+ * Item in *PhoneScreens → Default → Primary → Screens*
+ */
+export interface PhoneScreensSliceDefaultPrimaryScreensItem {
+	/**
+	 * Screenshot field in *PhoneScreens → Default → Primary → Screens*
+	 */
+	image: prismic.ImageField<never>;
+
+	/**
+	 * Description field in *PhoneScreens → Default → Primary → Screens*
+	 */
+	alt: prismic.KeyTextField;
+
+	/**
+	 * Raised field in *PhoneScreens → Default → Primary → Screens*
+	 */
+	raised: prismic.BooleanField;
+}
+
+/**
+ * Primary content in *PhoneScreens → Default → Primary*
+ */
+export interface PhoneScreensSliceDefaultPrimary {
+	/**
+	 * Screens field in *PhoneScreens → Default → Primary*
+	 */
+	screens: prismic.GroupField<Simplify<PhoneScreensSliceDefaultPrimaryScreensItem>>;
+}
+
+/**
+ * Default variation for PhoneScreens Slice
+ */
+export type PhoneScreensSliceDefault = prismic.SharedSliceVariation<"default", Simplify<PhoneScreensSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *PhoneScreens*
+ */
+type PhoneScreensSliceVariation = PhoneScreensSliceDefault
+
+/**
+ * PhoneScreens Shared Slice
+ *
+ * - **API ID**: `phone_screens`
+ */
+export type PhoneScreensSlice = prismic.SharedSlice<"phone_screens", PhoneScreensSliceVariation>;
+
+/**
+ * Primary content in *SectionImage → Default → Primary*
+ */
+export interface SectionImageSliceDefaultPrimary {
+	/**
+	 * Eyebrow field in *SectionImage → Default → Primary*
+	 */
+	eyebrow: prismic.KeyTextField;
+
+	/**
+	 * Image field in *SectionImage → Default → Primary*
+	 */
+	image: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for SectionImage Slice
+ */
+export type SectionImageSliceDefault = prismic.SharedSliceVariation<"default", Simplify<SectionImageSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *SectionImage*
+ */
+type SectionImageSliceVariation = SectionImageSliceDefault
+
+/**
+ * SectionImage Shared Slice
+ *
+ * - **API ID**: `section_image`
+ */
+export type SectionImageSlice = prismic.SharedSlice<"section_image", SectionImageSliceVariation>;
+
+/**
+ * Item in *StatGrid → Default → Primary → Stats*
+ */
+export interface StatGridSliceDefaultPrimaryStatsItem {
+	/**
+	 * Value field in *StatGrid → Default → Primary → Stats*
+	 */
+	value: prismic.KeyTextField;
+
+	/**
+	 * Label field in *StatGrid → Default → Primary → Stats*
+	 */
+	label: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *StatGrid → Default → Primary*
+ */
+export interface StatGridSliceDefaultPrimary {
+	/**
+	 * Eyebrow field in *StatGrid → Default → Primary*
+	 */
+	eyebrow: prismic.KeyTextField;
+
+	/**
+	 * Caption field in *StatGrid → Default → Primary*
+	 */
+	caption: prismic.KeyTextField;
+
+	/**
+	 * Stats field in *StatGrid → Default → Primary*
+	 */
+	stats: prismic.GroupField<Simplify<StatGridSliceDefaultPrimaryStatsItem>>;
+}
+
+/**
+ * Default variation for StatGrid Slice
+ */
+export type StatGridSliceDefault = prismic.SharedSliceVariation<"default", Simplify<StatGridSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *StatGrid*
+ */
+type StatGridSliceVariation = StatGridSliceDefault
+
+/**
+ * StatGrid Shared Slice
+ *
+ * - **API ID**: `stat_grid`
+ */
+export type StatGridSlice = prismic.SharedSlice<"stat_grid", StatGridSliceVariation>;
+
+/**
+ * Primary content in *LeadStatement → Default → Primary*
+ */
+export interface LeadStatementSliceDefaultPrimary {
+	/**
+	 * Eyebrow field in *LeadStatement → Default → Primary*
+	 */
+	eyebrow: prismic.KeyTextField;
+
+	/**
+	 * Statement field in *LeadStatement → Default → Primary*
+	 */
+	text: prismic.RichTextField;
+}
+
+/**
+ * Default variation for LeadStatement Slice
+ */
+export type LeadStatementSliceDefault = prismic.SharedSliceVariation<"default", Simplify<LeadStatementSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *LeadStatement*
+ */
+type LeadStatementSliceVariation = LeadStatementSliceDefault
+
+/**
+ * LeadStatement Shared Slice
+ *
+ * - **API ID**: `lead_statement`
+ */
+export type LeadStatementSlice = prismic.SharedSlice<"lead_statement", LeadStatementSliceVariation>;
+
+/**
+ * Item in *CreditList → Default → Primary → Credits*
+ */
+export interface CreditListSliceDefaultPrimaryCreditsItem {
+	/**
+	 * Role field in *CreditList → Default → Primary → Credits*
+	 */
+	role: prismic.KeyTextField;
+
+	/**
+	 * Name field in *CreditList → Default → Primary → Credits*
+	 */
+	name: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *CreditList → Default → Primary*
+ */
+export interface CreditListSliceDefaultPrimary {
+	/**
+	 * Eyebrow field in *CreditList → Default → Primary*
+	 */
+	eyebrow: prismic.KeyTextField;
+
+	/**
+	 * Credits field in *CreditList → Default → Primary*
+	 */
+	credits: prismic.GroupField<Simplify<CreditListSliceDefaultPrimaryCreditsItem>>;
+}
+
+/**
+ * Default variation for CreditList Slice
+ */
+export type CreditListSliceDefault = prismic.SharedSliceVariation<"default", Simplify<CreditListSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *CreditList*
+ */
+type CreditListSliceVariation = CreditListSliceDefault
+
+/**
+ * CreditList Shared Slice
+ *
+ * - **API ID**: `credit_list`
+ */
+export type CreditListSlice = prismic.SharedSlice<"credit_list", CreditListSliceVariation>;
+
+/**
+ * Primary content in *NextProject → Default → Primary*
+ */
+export interface NextProjectSliceDefaultPrimary {
+	/**
+	 * Title field in *NextProject → Default → Primary*
+	 */
+	title: prismic.KeyTextField;
+
+	/**
+	 * Subtitle field in *NextProject → Default → Primary*
+	 */
+	subtitle: prismic.KeyTextField;
+
+	/**
+	 * Background field in *NextProject → Default → Primary*
+	 */
+	image: prismic.ImageField<never>;
+
+	/**
+	 * Link field in *NextProject → Default → Primary*
+	 */
+	link: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+}
+
+/**
+ * Default variation for NextProject Slice
+ */
+export type NextProjectSliceDefault = prismic.SharedSliceVariation<"default", Simplify<NextProjectSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *NextProject*
+ */
+type NextProjectSliceVariation = NextProjectSliceDefault
+
+/**
+ * NextProject Shared Slice
+ *
+ * - **API ID**: `next_project`
+ */
+export type NextProjectSlice = prismic.SharedSlice<"next_project", NextProjectSliceVariation>;
+
 declare module "@prismicio/client" {
 	interface CreateClient {
 		(repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
@@ -364,7 +736,43 @@ declare module "@prismicio/client" {
 			HeroSlice,
 			HeroSliceDefaultPrimary,
 			HeroSliceVariation,
-			HeroSliceDefault
+			HeroSliceDefault,
+			WorkListSlice,
+			WorkListSliceDefaultPrimaryProjectsItem,
+			WorkListSliceDefaultPrimary,
+			WorkListSliceVariation,
+			WorkListSliceDefault,
+			CaseStudyHeroSlice,
+			CaseStudyHeroSliceDefaultPrimary,
+			CaseStudyHeroSliceVariation,
+			CaseStudyHeroSliceDefault,
+			PhoneScreensSlice,
+			PhoneScreensSliceDefaultPrimaryScreensItem,
+			PhoneScreensSliceDefaultPrimary,
+			PhoneScreensSliceVariation,
+			PhoneScreensSliceDefault,
+			SectionImageSlice,
+			SectionImageSliceDefaultPrimary,
+			SectionImageSliceVariation,
+			SectionImageSliceDefault,
+			StatGridSlice,
+			StatGridSliceDefaultPrimaryStatsItem,
+			StatGridSliceDefaultPrimary,
+			StatGridSliceVariation,
+			StatGridSliceDefault,
+			LeadStatementSlice,
+			LeadStatementSliceDefaultPrimary,
+			LeadStatementSliceVariation,
+			LeadStatementSliceDefault,
+			CreditListSlice,
+			CreditListSliceDefaultPrimaryCreditsItem,
+			CreditListSliceDefaultPrimary,
+			CreditListSliceVariation,
+			CreditListSliceDefault,
+			NextProjectSlice,
+			NextProjectSliceDefaultPrimary,
+			NextProjectSliceVariation,
+			NextProjectSliceDefault
 		}
 	}
 }

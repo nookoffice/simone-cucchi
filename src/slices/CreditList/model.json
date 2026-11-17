@@ -1,0 +1,28 @@
+{
+  "id": "credit_list",
+  "name": "CreditList",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Team credits",
+      "docURL": "",
+      "imageUrl": "",
+      "version": "",
+      "primary": {
+        "eyebrow": { "type": "Text", "config": { "label": "Eyebrow", "placeholder": "Section label" } },
+        "credits": {
+          "type": "Group",
+          "config": {
+            "label": "Credits",
+            "fields": {
+              "role": { "type": "Text", "config": { "label": "Role", "placeholder": "Product Design Lead" } },
+              "name": { "type": "Text", "config": { "label": "Name", "placeholder": "Full name" } }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

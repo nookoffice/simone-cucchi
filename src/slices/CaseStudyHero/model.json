@@ -1,0 +1,20 @@
+{
+  "id": "case_study_hero",
+  "name": "CaseStudyHero",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "Case study hero",
+      "docURL": "",
+      "imageUrl": "",
+      "version": "",
+      "primary": {
+        "title": { "type": "Text", "config": { "label": "Title", "placeholder": "Project name" } },
+        "intro": { "type": "StructuredText", "config": { "label": "Intro", "allowTargetBlank": false, "single": "paragraph" } },
+        "image": { "type": "Image", "config": { "label": "Background", "constraint": {}, "thumbnails": [] } }
+      }
+    }
+  ]
+}

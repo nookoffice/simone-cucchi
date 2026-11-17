@@ -1,0 +1,19 @@
+{
+  "id": "section_image",
+  "name": "SectionImage",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "An eyebrow label above a wide image",
+      "docURL": "",
+      "imageUrl": "",
+      "version": "",
+      "primary": {
+        "eyebrow": { "type": "Text", "config": { "label": "Eyebrow", "placeholder": "Section label" } },
+        "image": { "type": "Image", "config": { "label": "Image", "constraint": {}, "thumbnails": [] } }
+      }
+    }
+  ]
+}

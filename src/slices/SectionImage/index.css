@@ -1,0 +1,21 @@
+@layer components {
+  .csi_section {
+    background-color: #0a0607;
+    color: var(--light-100);
+    padding: var(--section-space-medium) var(--site-margin);
+  }
+  .csi_eyebrow {
+    font-family: var(--primary-family);
+    font-size: var(--text-small);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin: 0 0 var(--space-6);
+  }
+  .csi_img {
+    width: 100%; height: auto;
+    border-radius: var(--radius-main);
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+}

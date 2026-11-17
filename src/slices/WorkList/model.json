@@ -1,0 +1,41 @@
+{
+  "id": "work_list",
+  "name": "WorkList",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "description": "Default",
+      "docURL": "",
+      "id": "default",
+      "imageUrl": "",
+      "name": "Default",
+      "primary": {
+        "projects": {
+          "type": "Group",
+          "config": {
+            "label": "Projects",
+            "fields": {
+              "title": {
+                "type": "Text",
+                "config": { "label": "Title", "placeholder": "Project name" }
+              },
+              "accent": {
+                "type": "Color",
+                "config": { "label": "Brand colour" }
+              },
+              "image": {
+                "type": "Image",
+                "config": { "label": "Teaser", "constraint": {}, "thumbnails": [] }
+              },
+              "link": {
+                "type": "Link",
+                "config": { "label": "Case study", "allowTargetBlank": true }
+              }
+            }
+          }
+        }
+      },
+      "version": ""
+    }
+  ]
+}

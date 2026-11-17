@@ -1,0 +1,28 @@
+{
+  "id": "phone_screens",
+  "name": "PhoneScreens",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "A row of phone screenshots",
+      "docURL": "",
+      "imageUrl": "",
+      "version": "",
+      "primary": {
+        "screens": {
+          "type": "Group",
+          "config": {
+            "label": "Screens",
+            "fields": {
+              "image": { "type": "Image", "config": { "label": "Screenshot", "constraint": {}, "thumbnails": [] } },
+              "alt": { "type": "Text", "config": { "label": "Description", "placeholder": "What this screen shows" } },
+              "raised": { "type": "Boolean", "config": { "label": "Raised", "default_value": false, "placeholder_false": "Inline", "placeholder_true": "Lifted" } }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
