@@ -27,7 +27,7 @@ const PROJECTS: Project[] = [
     title: "Christie's App",
     gradient: "radial-gradient(70% 90% at 50% 42%, #6a1022 0%, #3c0613 52%, #220309 100%)",
     teaser: christiesApp,
-    href: "#",
+    href: "/work/christies-app",
   },
   {
     title: "Christie's 3.0",
@@ -116,7 +116,7 @@ export default function WorkExperience() {
         <ul className="work_list">
           {PROJECTS.map((project, index) => (
             <li key={project.title} className="work_item">
-              <a
+              <Link
                 className="work_block"
                 href={project.href}
                 aria-label={project.title}
@@ -126,9 +126,14 @@ export default function WorkExperience() {
               >
                 <span className="work_block_glass" aria-hidden="true" />
                 <span className="work_block_teaser" aria-hidden="true">
-                  <img className="work_block_img" src={project.teaser.src} alt="" />
+                  <img
+                    className="work_block_img"
+                    src={project.teaser.src}
+                    alt=""
+                    style={active === index ? ({ viewTransitionName: "project-hero" } as CSSProperties) : undefined}
+                  />
                 </span>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
