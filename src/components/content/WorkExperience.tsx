@@ -1,0 +1,277 @@
+"use client";
+
+import { type CSSProperties, useState } from "react";
+import { Styles } from "@/utils/styles";
+
+type Project = {
+  title: string;
+  /** Full-page brand gradient shown while the project is active. */
+  gradient: string;
+  href: string;
+};
+
+/**
+ * Work index. First pass with three projects from the design; the layout is
+ * data-driven, so adding the rest (and moving this to Prismic) is a content
+ * change, not a rewrite.
+ */
+const PROJECTS: Project[] = [
+  {
+    title: "Christie's App",
+    gradient: "radial-gradient(70% 90% at 50% 42%, #6a1022 0%, #3c0613 52%, #220309 100%)",
+    href: "#",
+  },
+  {
+    title: "Christie's 3.0",
+    gradient: "radial-gradient(70% 90% at 50% 42%, #9a92a8 0%, #7c7489 52%, #595167 100%)",
+    href: "#",
+  },
+  {
+    title: "Burberry New Era",
+    gradient: "radial-gradient(70% 95% at 45% 26%, #c3ccd9 0%, #808fa4 52%, #5c6980 100%)",
+    href: "#",
+  },
+];
+
+export default function WorkExperience() {
+  const [active, setActive] = useState<number | null>(null);
+  const activeProject = active !== null ? PROJECTS[active] : null;
+
+  return (
+    <div
+      className="work_wrap"
+      data-active={activeProject ? "" : undefined}
+      style={activeProject ? ({ "--work-gradient": activeProject.gradient } as CSSProperties) : undefined}
+      onMouseLeave={() => setActive(null)}
+    >
+      <Styles id="work" css={css} />
+      <div className="work_bg" aria-hidden="true" />
+
+      <div className="work_frame">
+        <div className="work_row work_row-top">
+          <span className="work_dot" aria-hidden="true">
+            <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
+              <circle cx="4" cy="4" r="4" fill="currentColor" />
+            </svg>
+          </span>
+          <p className="work_label">51.5072° N, 0.1276° W</p>
+        </div>
+
+        <div className="work_row work_row-mid">
+          <nav className="work_nav" aria-label="Primary">
+            <a className="work_label work_name" href="/">Simone Cucchi</a>
+            <ul className="work_nav_list">
+              <li>
+                <a className="work_label" href="/work">Work</a>
+              </li>
+              <li>
+                <a className="work_label" href="#">About</a>
+              </li>
+              <li>
+                <a className="work_label" href="#">Contact</a>
+              </li>
+            </ul>
+          </nav>
+          <a className="work_plus" href="/" aria-label="Home">
+            <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+              <path d="M22 0V44M0 22H44" stroke="currentColor" strokeWidth="2" />
+            </svg>
+          </a>
+        </div>
+
+        <div className="work_row work_row-bottom">
+          <p className="work_label">Volume on</p>
+          <p className="work_label">2011 - 2025 ©</p>
+        </div>
+      </div>
+
+      <div className="work_center">
+        <p className="work_title" aria-hidden={activeProject ? undefined : true}>
+          {activeProject?.title}
+        </p>
+        <ul className="work_list">
+          {PROJECTS.map((project, index) => (
+            <li key={project.title} className="work_item">
+              <a
+                className="work_block"
+                href={project.href}
+                aria-label={project.title}
+                data-open={active === index ? "" : undefined}
+                onMouseEnter={() => setActive(index)}
+                onFocus={() => setActive(index)}
+              >
+                <span className="work_block_glass" aria-hidden="true" />
+                <span
+                  className="work_block_teaser"
+                  aria-hidden="true"
+                  style={{ background: project.gradient }}
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+const css = `
+@layer components {
+  .work_wrap {
+    --work-text: var(--dark-800);
+    position: relative;
+    display: flex;
+    min-height: 100svh;
+    padding: var(--site-margin);
+    color: var(--work-text);
+    overflow: clip;
+    isolation: isolate;
+  }
+
+  /* Background layers: the base grey sits under the brand gradient, which
+     fades in when a project is active. */
+  .work_bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: #e2e2e2;
+  }
+  .work_bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--work-gradient, transparent);
+    opacity: 0;
+    transition: opacity 500ms var(--hover-ease);
+  }
+  .work_wrap[data-active] {
+    --work-text: var(--light-100);
+  }
+  .work_wrap[data-active] .work_bg::after {
+    opacity: 1;
+  }
+
+  .work_frame {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-6);
+    pointer-events: none;
+  }
+  .work_frame a {
+    pointer-events: auto;
+  }
+  .work_row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-5);
+  }
+  .work_row-top { align-items: flex-start; }
+  .work_row-mid { align-items: center; }
+  .work_row-bottom { align-items: flex-end; }
+
+  .work_label {
+    font-family: var(--primary-family);
+    font-size: clamp(0.8125rem, 0.72rem + 0.5vw, 1rem);
+    font-weight: var(--primary-regular);
+    line-height: var(--line-height-large);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    text-wrap: nowrap;
+    color: var(--work-text);
+    transition: color 500ms var(--hover-ease);
+  }
+  a.work_label { transition: color 500ms var(--hover-ease), opacity var(--hover-duration) var(--hover-ease); }
+  a.work_label:hover { opacity: 0.55; }
+
+  .work_nav { display: flex; align-items: baseline; gap: var(--space-6); }
+  .work_nav_list { display: flex; gap: var(--space-6); }
+
+  .work_dot { display: block; color: var(--work-text); translate: 0 0.5em; transition: color 500ms var(--hover-ease); }
+  .work_plus { display: block; width: clamp(1.75rem, 2.3vw, 2.75rem); color: var(--work-text); flex-shrink: 0; transition: color 500ms var(--hover-ease); }
+  .work_plus svg { width: 100%; height: auto; }
+
+  /* Centre column: the project title sits behind the stack of blocks. */
+  .work_center {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+  }
+  .work_title {
+    position: absolute;
+    margin: 0;
+    font-family: var(--primary-family);
+    font-size: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+    font-weight: var(--primary-regular);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    text-wrap: nowrap;
+    color: var(--light-100);
+    opacity: 0;
+    transition: opacity 400ms var(--hover-ease);
+    pointer-events: none;
+  }
+  .work_wrap[data-active] .work_title { opacity: 1; }
+
+  .work_list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.375rem;
+    width: clamp(10rem, 16vw, 12rem);
+  }
+  .work_item { display: block; }
+
+  .work_block {
+    position: relative;
+    display: block;
+    aspect-ratio: 192 / 45;
+    border-radius: 100vw;
+    overflow: hidden;
+    transition: aspect-ratio 400ms var(--hover-ease);
+  }
+  .work_block[data-open] {
+    aspect-ratio: 192 / 120;
+  }
+
+  /* Default: a glass bar. */
+  .work_block_glass {
+    position: absolute;
+    inset: 0;
+    border-radius: 100vw;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(210, 210, 210, 0.6) 45%, rgba(255, 255, 255, 0.5) 100%);
+    box-shadow:
+      inset 0 0 0 1px rgba(0, 0, 0, 0.22),
+      inset 0 2px 3px rgba(255, 255, 255, 0.9),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.12);
+    transition: opacity 400ms var(--hover-ease);
+  }
+  .work_block[data-open] .work_block_glass { opacity: 0; }
+
+  /* Revealed teaser (a brand panel for now; the image teaser comes next). */
+  .work_block_teaser {
+    position: absolute;
+    inset: 0;
+    border-radius: 1.25rem;
+    opacity: 0;
+    transition: opacity 400ms var(--hover-ease);
+  }
+  .work_block[data-open] .work_block_teaser { opacity: 1; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .work_bg::after,
+    .work_title,
+    .work_label,
+    .work_block,
+    .work_block_glass,
+    .work_block_teaser,
+    .work_dot,
+    .work_plus { transition-duration: 0.01ms; }
+  }
+}
+`;

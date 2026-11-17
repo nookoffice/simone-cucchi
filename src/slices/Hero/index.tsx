@@ -62,7 +62,7 @@ export default function Hero({ slice }: HeroProps) {
               ))}
             </ul>
           </nav>
-          <a className="hero_plus" href="#" aria-label="Next">
+          <a className="hero_plus" href="/work" aria-label="Work">
             <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
               <path d="M22 0V44M0 22H44" stroke="currentColor" strokeWidth="2" />
             </svg>
