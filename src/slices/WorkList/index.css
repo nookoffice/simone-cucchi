@@ -58,6 +58,9 @@
   }
   a.work_label { transition: color 500ms var(--hover-ease), opacity var(--hover-duration) var(--hover-ease); }
   a.work_label:hover { opacity: 0.55; }
+  /* Match the homepage nav's tracking. */
+  .work_topnav .work_label,
+  .work_sidenav .work_label { letter-spacing: 0.14em; }
 
   .work_lead { position: relative; display: flex; align-items: center; }
   .work_sidenav { display: flex; align-items: baseline; gap: var(--space-6); transition: opacity 400ms var(--hover-ease); }
@@ -108,12 +111,13 @@
   .work_block {
     position: relative;
     display: block;
-    aspect-ratio: 192 / 45;
+    height: 2.75rem;
     border-radius: 0.1875rem;
     overflow: hidden;
-    transition: aspect-ratio 400ms var(--hover-ease);
+    /* Animate height, not aspect-ratio (which browsers scrub unevenly). */
+    transition: height 520ms var(--motion-ease);
   }
-  .work_block[data-open] { aspect-ratio: 192 / 120; }
+  .work_block[data-open] { height: 7.25rem; }
 
   .work_block_glass {
     position: absolute; inset: 0; border-radius: 0.1875rem;

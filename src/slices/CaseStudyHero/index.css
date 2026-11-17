@@ -77,6 +77,8 @@
   }
   a.csh_label, .csh_back { transition: opacity var(--hover-duration) var(--hover-ease); }
   a.csh_label:hover, .csh_back:hover { opacity: 0.55; }
+  /* Match the homepage nav's tracking. */
+  .csh_topnav .csh_label { letter-spacing: 0.14em; }
   .csh_back { display: inline-flex; align-items: center; gap: var(--space-2); color: var(--light-100); }
   .csh_topnav { position: absolute; left: 50%; translate: -50% 0; display: flex; gap: var(--space-6); }
 
