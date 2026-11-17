@@ -1,0 +1,116 @@
+@layer components {
+  .hero_wrap {
+    position: relative;
+    display: flex;
+    min-height: 100svh;
+    padding: var(--site-margin);
+    /* The design's hero grey, a touch darker than the site --background. */
+    background-color: #e2e2e2;
+    color: var(--text);
+    overflow: clip;
+  }
+
+  /* Centred object — image placeholder for the 3D object to come. */
+  .hero_object {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: clamp(14rem, 27vw, 32.75rem);
+    aspect-ratio: 524 / 508;
+    translate: -50% -50%;
+    border-radius: 38%;
+    overflow: hidden;
+    mix-blend-mode: exclusion;
+    pointer-events: none;
+  }
+
+  .hero_object_media {
+    position: absolute;
+    top: -55.9%;
+    left: -133.23%;
+    width: 366.77%;
+    height: 210.99%;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  /* Editorial frame: three full-width rows pinned top / centre / bottom. */
+  .hero_frame {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-6);
+  }
+
+  .hero_row {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-5);
+  }
+  .hero_row-top {
+    align-items: flex-start;
+  }
+  .hero_row-mid {
+    align-items: center;
+  }
+  .hero_row-bottom {
+    align-items: flex-end;
+  }
+
+  .hero_label {
+    font-family: var(--primary-family);
+    font-size: clamp(0.8125rem, 0.72rem + 0.5vw, 1rem);
+    font-weight: var(--primary-regular);
+    line-height: var(--line-height-large);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    text-wrap: nowrap;
+    color: var(--text);
+  }
+  a.hero_label {
+    transition: opacity var(--hover-duration) var(--hover-ease);
+  }
+  a.hero_label:hover {
+    opacity: 0.55;
+  }
+
+  .hero_nav {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-6);
+  }
+  .hero_nav_list {
+    display: flex;
+    gap: var(--space-6);
+  }
+
+  .hero_dot {
+    display: block;
+    color: var(--text);
+    translate: 0 0.5em;
+  }
+  .hero_plus {
+    display: block;
+    width: clamp(1.75rem, 2.3vw, 2.75rem);
+    color: var(--text);
+    flex-shrink: 0;
+  }
+  .hero_plus svg {
+    width: 100%;
+    height: auto;
+  }
+
+  /* The nav row wraps on narrow screens so the name and links stay legible. */
+  @media (width < 48rem) {
+    .hero_nav {
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .hero_nav_list {
+      gap: var(--space-5);
+    }
+  }
+}

@@ -22,5 +22,7 @@ export default async function HomePage() {
   const page = await getHomepage();
   if (!page) notFound();
 
-  return <PrismicSlices slices={page.data.slices} />;
+  // The homepage is a full-screen hero with its own nav + corner marks,
+  // so the global nav + footer are suppressed here.
+  return <PrismicSlices slices={page.data.slices} chrome={false} />;
 }

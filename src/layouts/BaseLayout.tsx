@@ -18,6 +18,8 @@ type Props = SeoProps & {
    * `paddingTop="navoverlap"` to clear the bar.
    */
   overlap?: boolean;
+  /** Render the global nav + footer. Set `false` for pages with their own chrome. */
+  chrome?: boolean;
   /** Extra elements hoisted into the document head. */
   head?: ReactNode;
   children?: ReactNode;
@@ -26,6 +28,7 @@ type Props = SeoProps & {
 export default async function BaseLayout({
   theme = "inherit",
   overlap = false,
+  chrome = true,
   head,
   children,
 }: Props) {
@@ -40,13 +43,13 @@ export default async function BaseLayout({
       <ThemeLock theme={theme} />
       {head}
       <SkipLink />
-      <Nav overlap={overlap} links={headerLinks} />
+      {chrome && <Nav overlap={overlap} links={headerLinks} />}
       <main id="main" tabIndex={-1}>
         <ViewTransition name="page" share="page-fade" enter="page-fade" exit="page-fade" default="none">
           <div className="lumos-page_content">{children}</div>
         </ViewTransition>
       </main>
-      <Footer links={footerLinks} />
+      {chrome && <Footer links={footerLinks} />}
     </div>
   );
 }

@@ -21,6 +21,7 @@
   --letter-spacing-tighter: -0.06em;
   --letter-spacing-tight: -0.03em;
   --letter-spacing-normal: 0em;
+  --letter-spacing-wide: 0.3em;
 
   /* Line height */
   --line-height-small: 1;
