@@ -4,7 +4,11 @@ import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 
 const BARS = 5;
-/** Drop a royalty-free ambient loop here to give the toggle sound. */
+/**
+ * Ambient loop. Current track: "Mysterious" from Pixabay, used under the
+ * Pixabay Content License (free for commercial use, no attribution required).
+ * Swap the file at this path to change it.
+ */
 const AUDIO_SRC = "/audio/ambient-loop.mp3";
 const STORAGE_KEY = "sc-volume";
 
