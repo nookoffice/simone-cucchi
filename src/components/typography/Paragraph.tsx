@@ -11,6 +11,7 @@ type ParagraphStyle =
   | "h4"
   | "h5"
   | "h6"
+  | "lead"
   | "large"
   | "main"
   | "small";

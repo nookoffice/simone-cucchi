@@ -72,6 +72,7 @@ const typeScale = [
   ["h4", "Heading 4", "28–32", "Lumos"],
   ["h5", "Heading 5", "22–24", "Lumos"],
   ["h6", "Heading 6", "16–18", "Lumos"],
+  ["lead", "Lead", "22–32", sentence],
   ["large", "Large", "18–20", sentence],
   ["main", "Main", "16–18", sentence],
   ["small", "Small", "14–16", sentence],
@@ -99,9 +100,9 @@ export default function StyleGuidePage() {
         <Eyebrow>Type</Eyebrow>
         <Heading tag="h2">Typography</Heading>
         <Paragraph maxWidth={48}>
-          Inter is the primary family. Regular is 400, medium is 500, and bold is 700. Headings use
-          medium weight, tight letter spacing, and a line height of 1 or 1.1. Body text uses regular
-          weight, normal letter spacing, and a line height of 1.3 or 1.5.
+          Nimbus Sans is the primary family, used for display, headings, and UI. Victor, a serif, is
+          the secondary family for lead and body copy. Everything is set at regular weight; display
+          and headings use tight letter spacing and a short line height, body copy a longer one.
         </Paragraph>
         {typeScale.map(([style, name, range, text]) => (
           <GuideSample key={style} variant="type" name={`${name} · ${range}`} textStyle={style}>

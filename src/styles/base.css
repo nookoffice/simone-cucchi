@@ -2,21 +2,23 @@
 :root {
   /* Swatches */
   --light-100: #ffffff;
-  --light-200: #ebebeb;
-  --light-300: #d9d9d9;
-  --dark-700: #453e42;
-  --dark-800: #2f2b2d;
-  --dark-900: #1f1d1e;
-  --brand-500: #c6fb50;
-  --brand-text: var(--dark-900);
+  --light-200: #f6f6f6;
+  --light-300: #ededed;
+  --dark-700: #acacac;
+  --dark-800: #222222;
+  --dark-900: #000000;
+  --brand-500: #222222;
+  --brand-text: var(--light-100);
 
   /* Typography primitives */
-  --primary-family: var(--font-inter, system-ui, sans-serif);
+  --primary-family: var(--font-nimbus, "Helvetica Neue", Helvetica, Arial, sans-serif);
+  --secondary-family: var(--font-victor, Georgia, "Times New Roman", serif);
   --primary-regular: 400;
   --primary-medium: 500;
   --primary-bold: 700;
 
   /* Letter spacing */
+  --letter-spacing-tighter: -0.06em;
   --letter-spacing-tight: -0.03em;
   --letter-spacing-normal: 0em;
 
@@ -62,12 +64,12 @@
   --display-min: 64;
   --display-max: 112;
   --display-line-height: var(--line-height-small);
-  --display-letter-spacing: var(--letter-spacing-tight);
-  --display-text-transform: none;
+  --display-letter-spacing: var(--letter-spacing-tighter);
+  --display-text-transform: uppercase;
   --display-margin-top: var(--space-7);
   --display-margin-bottom: var(--space-6);
   --display-font-family: var(--primary-family);
-  --display-font-weight: var(--primary-medium);
+  --display-font-weight: var(--primary-regular);
   --display-text-wrap: balance;
 
   --h1: clamp(var(--h1-min) / 16 * 1rem, ((var(--h1-min) - ((var(--h1-max) - var(--h1-min)) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) / 16 * 1rem + ((var(--h1-max) - var(--h1-min)) / (var(--viewport-max) - var(--viewport-min))) * 100vw), var(--h1-max) / 16 * 1rem);
@@ -79,7 +81,7 @@
   --h1-margin-top: var(--space-7);
   --h1-margin-bottom: var(--space-6);
   --h1-font-family: var(--primary-family);
-  --h1-font-weight: var(--primary-medium);
+  --h1-font-weight: var(--primary-regular);
   --h1-text-wrap: balance;
 
   --h2: clamp(var(--h2-min) / 16 * 1rem, ((var(--h2-min) - ((var(--h2-max) - var(--h2-min)) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) / 16 * 1rem + ((var(--h2-max) - var(--h2-min)) / (var(--viewport-max) - var(--viewport-min))) * 100vw), var(--h2-max) / 16 * 1rem);
@@ -91,7 +93,7 @@
   --h2-margin-top: var(--space-7);
   --h2-margin-bottom: var(--space-5);
   --h2-font-family: var(--primary-family);
-  --h2-font-weight: var(--primary-medium);
+  --h2-font-weight: var(--primary-regular);
   --h2-text-wrap: balance;
 
   --h3: clamp(var(--h3-min) / 16 * 1rem, ((var(--h3-min) - ((var(--h3-max) - var(--h3-min)) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) / 16 * 1rem + ((var(--h3-max) - var(--h3-min)) / (var(--viewport-max) - var(--viewport-min))) * 100vw), var(--h3-max) / 16 * 1rem);
@@ -103,7 +105,7 @@
   --h3-margin-top: var(--space-6);
   --h3-margin-bottom: var(--space-5);
   --h3-font-family: var(--primary-family);
-  --h3-font-weight: var(--primary-medium);
+  --h3-font-weight: var(--primary-regular);
   --h3-text-wrap: balance;
 
   --h4: clamp(var(--h4-min) / 16 * 1rem, ((var(--h4-min) - ((var(--h4-max) - var(--h4-min)) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) / 16 * 1rem + ((var(--h4-max) - var(--h4-min)) / (var(--viewport-max) - var(--viewport-min))) * 100vw), var(--h4-max) / 16 * 1rem);
@@ -115,7 +117,7 @@
   --h4-margin-top: var(--space-6);
   --h4-margin-bottom: var(--space-4);
   --h4-font-family: var(--primary-family);
-  --h4-font-weight: var(--primary-medium);
+  --h4-font-weight: var(--primary-regular);
   --h4-text-wrap: balance;
 
   --h5: clamp(var(--h5-min) / 16 * 1rem, ((var(--h5-min) - ((var(--h5-max) - var(--h5-min)) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) / 16 * 1rem + ((var(--h5-max) - var(--h5-min)) / (var(--viewport-max) - var(--viewport-min))) * 100vw), var(--h5-max) / 16 * 1rem);
@@ -127,7 +129,7 @@
   --h5-margin-top: var(--space-5);
   --h5-margin-bottom: var(--space-4);
   --h5-font-family: var(--primary-family);
-  --h5-font-weight: var(--primary-medium);
+  --h5-font-weight: var(--primary-regular);
   --h5-text-wrap: balance;
 
   --h6: clamp(var(--h6-min) / 16 * 1rem, ((var(--h6-min) - ((var(--h6-max) - var(--h6-min)) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) / 16 * 1rem + ((var(--h6-max) - var(--h6-min)) / (var(--viewport-max) - var(--viewport-min))) * 100vw), var(--h6-max) / 16 * 1rem);
@@ -139,7 +141,7 @@
   --h6-margin-top: var(--space-5);
   --h6-margin-bottom: var(--space-3);
   --h6-font-family: var(--primary-family);
-  --h6-font-weight: var(--primary-medium);
+  --h6-font-weight: var(--primary-regular);
   --h6-text-wrap: balance;
 
   --text-large: clamp(var(--text-large-min) / 16 * 1rem, ((var(--text-large-min) - ((var(--text-large-max) - var(--text-large-min)) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) / 16 * 1rem + ((var(--text-large-max) - var(--text-large-min)) / (var(--viewport-max) - var(--viewport-min))) * 100vw), var(--text-large-max) / 16 * 1rem);
@@ -150,7 +152,7 @@
   --text-large-text-transform: none;
   --text-large-margin-top: var(--space-4);
   --text-large-margin-bottom: var(--space-4);
-  --text-large-font-family: var(--primary-family);
+  --text-large-font-family: var(--secondary-family);
   --text-large-font-weight: var(--primary-regular);
   --text-large-text-wrap: pretty;
 
@@ -162,7 +164,7 @@
   --text-main-text-transform: none;
   --text-main-margin-top: var(--space-4);
   --text-main-margin-bottom: var(--space-4);
-  --text-main-font-family: var(--primary-family);
+  --text-main-font-family: var(--secondary-family);
   --text-main-font-weight: var(--primary-regular);
   --text-main-text-wrap: pretty;
 
@@ -177,6 +179,18 @@
   --text-small-font-family: var(--primary-family);
   --text-small-font-weight: var(--primary-regular);
   --text-small-text-wrap: pretty;
+
+  --lead: clamp(var(--lead-min) / 16 * 1rem, ((var(--lead-min) - ((var(--lead-max) - var(--lead-min)) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) / 16 * 1rem + ((var(--lead-max) - var(--lead-min)) / (var(--viewport-max) - var(--viewport-min))) * 100vw), var(--lead-max) / 16 * 1rem);
+  --lead-min: 22;
+  --lead-max: 32;
+  --lead-line-height: var(--line-height-large);
+  --lead-letter-spacing: var(--letter-spacing-normal);
+  --lead-text-transform: none;
+  --lead-margin-top: var(--space-5);
+  --lead-margin-bottom: var(--space-5);
+  --lead-font-family: var(--secondary-family);
+  --lead-font-weight: var(--primary-regular);
+  --lead-text-wrap: pretty;
 
   /* Site layout */
   --site-margin: clamp(var(--site-margin-min) / 16 * 1rem, ((var(--site-margin-min) - ((var(--site-margin-max) - var(--site-margin-min)) / (var(--viewport-max) - var(--viewport-min)) * var(--viewport-min))) / 16 * 1rem + ((var(--site-margin-max) - var(--site-margin-min)) / (var(--viewport-max) - var(--viewport-min))) * 100vw), var(--site-margin-max) / 16 * 1rem);
@@ -236,12 +250,12 @@
 .theme-brand .theme-invert {
   color-scheme: light;
 
-  --background: var(--light-300);
-  --background-2: var(--light-200);
+  --background: var(--light-200);
+  --background-2: var(--light-100);
   --background-3: var(--light-100);
   --background-skeleton: color-mix(in lab, currentcolor 10%, transparent);
-  --text: var(--dark-900);
-  --text-2: color-mix(in lab, currentcolor 60%, transparent);
+  --text: var(--dark-800);
+  --text-2: var(--dark-700);
   --border: color-mix(in lab, var(--text) 20%, transparent);
   --heading-accent: color-mix(in srgb, var(--brand-500), black 20%);
 
@@ -496,6 +510,12 @@ body,
   --_margin-bottom: var(--text-main-margin-bottom);
 }
 
+/* Default UI voice is the sans; the serif is opt-in via .text-style-main / -large
+   (Paragraph, RichText), so chrome like nav and buttons stays on the sans. */
+body {
+  font-family: var(--primary-family);
+}
+
 .text-style-small {
   font-family: var(--text-small-font-family);
   font-size: var(--text-small);
@@ -518,6 +538,18 @@ body,
   text-wrap: var(--text-large-text-wrap);
   --_margin-top: var(--text-large-margin-top);
   --_margin-bottom: var(--text-large-margin-bottom);
+}
+
+.text-style-lead {
+  font-family: var(--lead-font-family);
+  font-size: var(--lead);
+  font-weight: var(--lead-font-weight);
+  line-height: var(--lead-line-height);
+  letter-spacing: var(--lead-letter-spacing);
+  text-transform: var(--lead-text-transform);
+  text-wrap: var(--lead-text-wrap);
+  --_margin-top: var(--lead-margin-top);
+  --_margin-bottom: var(--lead-margin-bottom);
 }
 
 .text-style-display {

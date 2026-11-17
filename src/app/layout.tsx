@@ -6,11 +6,28 @@ import SmoothScroll from "@/components/SmoothScroll";
 import { getSiteTheme } from "@/prismic/theme";
 import "@/styles/global.css";
 
-const inter = localFont({
-  src: "../assets/fonts/inter-regular.woff2",
-  weight: "400",
-  style: "normal",
-  variable: "--font-inter",
+// Nimbus Sans — the display/UI sans, exposed via --primary-family.
+const nimbusSans = localFont({
+  src: [
+    { path: "../assets/fonts/NimbusSans-Regular.otf", weight: "400", style: "normal" },
+    { path: "../assets/fonts/NimbusSans-Italic.otf", weight: "400", style: "italic" },
+    { path: "../assets/fonts/NimbusSans-Bold.otf", weight: "700", style: "normal" },
+    { path: "../assets/fonts/NimbusSans-BoldItalic.otf", weight: "700", style: "italic" },
+  ],
+  variable: "--font-nimbus",
+  display: "swap",
+});
+
+// Victor (KOMETA Victor, trial) — the editorial serif, exposed via --secondary-family.
+const victor = localFont({
+  src: [
+    { path: "../assets/fonts/Victor-Regular.otf", weight: "400", style: "normal" },
+    { path: "../assets/fonts/Victor-Italic.otf", weight: "400", style: "italic" },
+    { path: "../assets/fonts/Victor-Medium.otf", weight: "500", style: "normal" },
+    { path: "../assets/fonts/Victor-Semibold.otf", weight: "600", style: "normal" },
+    { path: "../assets/fonts/Victor-Bold.otf", weight: "700", style: "normal" },
+  ],
+  variable: "--font-victor",
   display: "swap",
 });
 
@@ -36,7 +53,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const siteTheme = await getSiteTheme();
 
   return (
-    <html lang="en" className={`${inter.variable} theme-${siteTheme}`} data-site-theme={siteTheme} suppressHydrationWarning>
+    <html lang="en" className={`${nimbusSans.variable} ${victor.variable} theme-${siteTheme}`} data-site-theme={siteTheme} suppressHydrationWarning>
       <head>
         <style href="lumos-layers" precedence="lumos-layers">{`@layer base, patterns, components, utilities;`}</style>
       </head>
