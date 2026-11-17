@@ -2,6 +2,7 @@ import type { Content } from "@prismicio/client";
 import type { SliceComponentProps } from "@prismicio/react";
 import Link from "next/link";
 import { CONTACT_EMAIL } from "@/consts";
+import HeroObject from "@/components/HeroObject";
 import VolumeToggle from "@/components/VolumeToggle";
 import heroObject from "./hero-object.jpg";
 import "./index.css";
@@ -29,16 +30,10 @@ export default function Hero({ slice }: HeroProps) {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      {/* Centred object: a bundled placeholder for the 3D object to come.
-          Swap the <img> for a canvas without touching the frame. The slice's
-          Prismic `image` field stays available for a content-managed swap. */}
-      <div className="hero_object">
-        <img
-          className="hero_object_media"
-          src={heroObject.src}
-          alt="Simone Cucchi monogram rendered in glass"
-        />
-      </div>
+      {/* Centred object: a bundled placeholder that tilts toward the cursor.
+          Swap the <img> inside HeroObject for a 3D canvas later without
+          touching the frame. */}
+      <HeroObject src={heroObject.src} alt="Simone Cucchi monogram rendered in glass" />
 
       <div className="hero_frame">
         <div className="hero_row hero_row-top">

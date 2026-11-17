@@ -8,6 +8,8 @@
     background-color: #e2e2e2;
     color: var(--text);
     overflow: clip;
+    /* Depth for the central object's cursor tilt. */
+    perspective: 1100px;
   }
 
   /* Centred object — image placeholder for the 3D object to come. */
