@@ -37,21 +37,26 @@ export default function NextProject({ slice }: NextProjectProps) {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let navigated = false;
-    let frame = 0;
+    let smoothed = 0;
+    let raf = 0;
 
-    const update = () => {
-      frame = 0;
+    // A continuous loop that eases the expansion toward the scroll position —
+    // decoupled from scroll-event cadence, so it stays smooth under Lenis.
+    const loop = () => {
       const rect = wrap.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const distance = rect.height - vh; // scrollable travel while pinned
-      const progress = clamp(-rect.top / Math.max(distance, 1), 0, 1);
+      const distance = Math.max(rect.height - window.innerHeight, 1);
+      const target = clamp(-rect.top / distance, 0, 1);
+      smoothed += (target - smoothed) * 0.12;
+      if (Math.abs(target - smoothed) < 0.0004) smoothed = target;
 
-      // Expand the card to full-bleed over the first ~75% of the travel.
-      const e = clamp(progress / 0.75, 0, 1);
-      media.style.clipPath = `inset(${lerp(12, 0, e)}% ${lerp(10, 0, e)}% round ${lerp(14, 0, e)}px)`;
-      content.style.opacity = String(clamp(1 - e * 1.3, 0, 1));
+      if (target > 0.0005 || smoothed > 0.0005) {
+        // Expand the card to full-bleed over the first ~72% of the travel.
+        const e = clamp(smoothed / 0.72, 0, 1);
+        media.style.clipPath = `inset(${lerp(12, 0, e).toFixed(2)}% ${lerp(10, 0, e).toFixed(2)}% round ${lerp(14, 0, e).toFixed(2)}px)`;
+        content.style.opacity = String(clamp(1 - e * 1.35, 0, 1));
+      }
 
-      if (!navigated && href && progress >= 0.98) {
+      if (!navigated && href && target >= 0.99) {
         navigated = true;
         try {
           sessionStorage.setItem(SKIP_HOLD_KEY, "1");
@@ -60,20 +65,11 @@ export default function NextProject({ slice }: NextProjectProps) {
         }
         router.push(href);
       }
+      raf = requestAnimationFrame(loop);
     };
 
-    const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(update);
-    };
-
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (frame) cancelAnimationFrame(frame);
-    };
+    raf = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(raf);
   }, [href, router]);
 
   return (
