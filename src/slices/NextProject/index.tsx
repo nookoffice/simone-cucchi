@@ -10,7 +10,7 @@ export default function NextProject({ slice }: NextProjectProps) {
   const { title, subtitle, image, link } = slice.primary;
 
   return (
-    <PrismicNextLink field={link} className="csn_next">
+    <PrismicNextLink field={link} className="csn_next" data-reveal>
       {isFilled.image(image) && (
         <img className="csn_img" src={image.url} alt={image.alt ?? ""} />
       )}

@@ -9,7 +9,7 @@ export default function SectionImage({ slice }: SectionImageProps) {
   const { eyebrow, image } = slice.primary;
 
   return (
-    <section className="csi_section">
+    <section className="csi_section" data-reveal>
       {isFilled.keyText(eyebrow) && <p className="csi_eyebrow">{eyebrow}</p>}
       {isFilled.image(image) && (
         <img className="csi_img" src={image.url} alt={image.alt ?? ""} />

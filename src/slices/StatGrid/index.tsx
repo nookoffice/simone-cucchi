@@ -9,7 +9,7 @@ export default function StatGrid({ slice }: StatGridProps) {
   const { eyebrow, caption, stats } = slice.primary;
 
   return (
-    <section className="csg_section">
+    <section className="csg_section" data-reveal>
       {isFilled.keyText(eyebrow) && <p className="csg_eyebrow">{eyebrow}</p>}
       <div className="csg_body">
         {isFilled.keyText(caption) && <p className="csg_caption">{caption}</p>}

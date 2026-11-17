@@ -9,7 +9,7 @@ export default function LeadStatement({ slice }: LeadStatementProps) {
   const { eyebrow, text } = slice.primary;
 
   return (
-    <section className="csl_section">
+    <section className="csl_section" data-reveal>
       {isFilled.keyText(eyebrow) && <p className="csl_eyebrow">{eyebrow}</p>}
       {isFilled.richText(text) && (
         <p className="csl_text text-style-lead">{asText(text)}</p>

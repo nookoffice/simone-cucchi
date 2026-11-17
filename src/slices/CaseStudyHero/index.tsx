@@ -29,9 +29,9 @@ export default function CaseStudyHero({ slice }: CaseStudyHeroProps) {
             <span className="csh_label">Back</span>
           </PrismicNextLink>
           <nav className="csh_topnav" aria-label="Sections">
-            <PrismicNextLink className="csh_label" href="/work">Work</PrismicNextLink>
-            <PrismicNextLink className="csh_label" href="/about">About</PrismicNextLink>
-            <a className="csh_label" href={`mailto:${CONTACT_EMAIL}`}>Contact</a>
+            <PrismicNextLink className="csh_label nav-underline" href="/work">Work</PrismicNextLink>
+            <PrismicNextLink className="csh_label nav-underline" href="/about">About</PrismicNextLink>
+            <a className="csh_label nav-underline" href={`mailto:${CONTACT_EMAIL}`}>Contact</a>
           </nav>
           <p className="csh_label">51.5072° N, 0.1276° W</p>
         </div>

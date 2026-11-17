@@ -58,13 +58,13 @@ export default function Hero({ slice }: HeroProps) {
               {NAV_LINKS.map((item) =>
                 item.href.startsWith("/") ? (
                   <li key={item.label}>
-                    <Link className="hero_label hero_link" href={item.href}>
+                    <Link className="hero_label hero_link nav-underline" href={item.href}>
                       {item.label}
                     </Link>
                   </li>
                 ) : (
                   <li key={item.label}>
-                    <a className="hero_label hero_link" href={item.href}>
+                    <a className="hero_label hero_link nav-underline" href={item.href}>
                       {item.label}
                     </a>
                   </li>

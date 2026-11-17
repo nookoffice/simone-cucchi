@@ -9,7 +9,7 @@ export default function PhoneScreens({ slice }: PhoneScreensProps) {
   const screens = slice.primary.screens;
 
   return (
-    <section className="csp_section">
+    <section className="csp_section" data-reveal>
       <div className="csp_row">
         {screens.map((screen, index) =>
           isFilled.image(screen.image) ? (

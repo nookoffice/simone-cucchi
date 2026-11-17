@@ -9,7 +9,7 @@ export default function CreditList({ slice }: CreditListProps) {
   const { eyebrow, credits } = slice.primary;
 
   return (
-    <section className="csc_section">
+    <section className="csc_section" data-reveal>
       {isFilled.keyText(eyebrow) && <p className="csc_eyebrow">{eyebrow}</p>}
       <ul className="csc_list">
         {credits.map((credit, index) => (

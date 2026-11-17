@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/consts";
 import GridOverlay from "@/components/global/GridOverlay";
+import ScrollReveal from "@/components/ScrollReveal";
 import SmoothScroll from "@/components/SmoothScroll";
 import { getSiteTheme } from "@/prismic/theme";
 import "@/styles/global.css";
@@ -59,6 +60,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       </head>
       <body>
         <SmoothScroll>{children}</SmoothScroll>
+        <ScrollReveal />
         <GridOverlay />
         <script
           dangerouslySetInnerHTML={{

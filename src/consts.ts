@@ -1,7 +1,7 @@
 /** Site name. Appended to every page title and used as `og:site_name`. */
 export const SITE_NAME = "Simone Cucchi";
-/** Address the "Contact" nav opens. TODO: replace with Simone's real inbox. */
-export const CONTACT_EMAIL = "hello@simonecucchi.com";
+/** Address the "Contact" nav opens. */
+export const CONTACT_EMAIL = "simone.cucchi14@gmail.com";
 /** Fallback meta description for pages that don't set their own. */
 export const SITE_DESCRIPTION =
   "Award-winning multidisciplinary digital designer and art director with over 16 years designing for Apple, Christie's, Burberry, Givenchy, LVMH and more.";

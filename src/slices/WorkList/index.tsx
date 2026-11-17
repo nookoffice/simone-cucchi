@@ -41,9 +41,9 @@ export default function WorkList({ slice }: WorkListProps) {
             </svg>
           </span>
           <nav className="work_topnav" aria-label="Sections">
-            <PrismicNextLink className="work_label" href="/work">Work</PrismicNextLink>
-            <PrismicNextLink className="work_label" href="/about">About</PrismicNextLink>
-            <a className="work_label" href={`mailto:${CONTACT_EMAIL}`}>Contact</a>
+            <PrismicNextLink className="work_label nav-underline" href="/work">Work</PrismicNextLink>
+            <PrismicNextLink className="work_label nav-underline" href="/about">About</PrismicNextLink>
+            <a className="work_label nav-underline" href={`mailto:${CONTACT_EMAIL}`}>Contact</a>
           </nav>
           <p className="work_label">51.5072° N, 0.1276° W</p>
         </div>
@@ -51,11 +51,11 @@ export default function WorkList({ slice }: WorkListProps) {
         <div className="work_row work_row-mid">
           <div className="work_lead">
             <nav className="work_sidenav" aria-label="Primary">
-              <PrismicNextLink className="work_label work_name" href="/">Simone Cucchi</PrismicNextLink>
+              <PrismicNextLink className="work_label work_name nav-underline" href="/">Simone Cucchi</PrismicNextLink>
               <ul className="work_nav_list">
-                <li><PrismicNextLink className="work_label" href="/work">Work</PrismicNextLink></li>
-                <li><PrismicNextLink className="work_label" href="/about">About</PrismicNextLink></li>
-                <li><a className="work_label" href={`mailto:${CONTACT_EMAIL}`}>Contact</a></li>
+                <li><PrismicNextLink className="work_label nav-underline" href="/work">Work</PrismicNextLink></li>
+                <li><PrismicNextLink className="work_label nav-underline" href="/about">About</PrismicNextLink></li>
+                <li><a className="work_label nav-underline" href={`mailto:${CONTACT_EMAIL}`}>Contact</a></li>
               </ul>
             </nav>
             <PrismicNextLink className="work_minus" href="/" aria-label="Back to home">

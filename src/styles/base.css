@@ -35,13 +35,22 @@
   --focus-offset: 0.1827rem;
   --focus-offset-inner: calc(var(--focus-width) * -1);
 
-  /* Hover motion */
-  --hover-duration: 200ms;
-  --hover-ease: ease;
+  /* Motion language — one signature easing + a shared timing scale.
+     Everything (hovers, reveals, transitions) draws from these so the
+     whole site moves with the same effortless feel. */
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1); /* easeOutQuint */
+  --motion-ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --motion-fast: 240ms;
+  --motion-medium: 480ms;
+  --motion-slow: 760ms;
+
+  /* Hover motion (kept for existing call sites, now on the shared curve) */
+  --hover-duration: var(--motion-fast);
+  --hover-ease: var(--motion-ease);
 
   /* Opening motion */
-  --open-duration: var(--hover-duration);
-  --open-ease: var(--hover-ease);
+  --open-duration: var(--motion-medium);
+  --open-ease: var(--motion-ease);
 
   /* Radius */
   --radius-small: 0.5rem;
