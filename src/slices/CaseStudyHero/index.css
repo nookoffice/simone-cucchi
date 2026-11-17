@@ -1,4 +1,10 @@
 @layer components {
+  /* Case studies are dark end to end; paint the page behind them dark so no
+     light seams show between sections (sub-pixel gaps or the scroll reveal). */
+  .lumos-page_content:has(.csh_hero) {
+    background-color: #0a0607;
+  }
+
   .csh_hero {
     position: relative;
     display: flex;
