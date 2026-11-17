@@ -4,7 +4,6 @@ import Link from "next/link";
 import { CONTACT_EMAIL } from "@/consts";
 import HeroObject from "@/components/HeroObject";
 import VolumeToggle from "@/components/VolumeToggle";
-import heroObject from "./hero-object.jpg";
 import "./index.css";
 
 /** Props for `Hero`. */
@@ -30,10 +29,9 @@ export default function Hero({ slice }: HeroProps) {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      {/* Centred object: a bundled placeholder that tilts toward the cursor.
-          Swap the <img> inside HeroObject for a 3D canvas later without
-          touching the frame. */}
-      <HeroObject src={heroObject.src} alt="Simone Cucchi monogram rendered in glass" />
+      {/* Centred object: flickers through the logo's materials as a preloader,
+          then settles on glass and tilts toward the cursor. */}
+      <HeroObject alt="Simone Cucchi monogram" />
 
       <div className="hero_frame">
         <div className="hero_row hero_row-top">
