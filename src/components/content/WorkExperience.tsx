@@ -1,12 +1,18 @@
 "use client";
 
+import type { StaticImageData } from "next/image";
 import { type CSSProperties, useState } from "react";
 import { Styles } from "@/utils/styles";
+import burberry from "@/assets/work/burberry.png";
+import christies30 from "@/assets/work/christies-30.png";
+import christiesApp from "@/assets/work/christies-app.png";
 
 type Project = {
   title: string;
   /** Full-page brand gradient shown while the project is active. */
   gradient: string;
+  /** Teaser image revealed in the opened block. */
+  teaser: StaticImageData;
   href: string;
 };
 
@@ -19,16 +25,19 @@ const PROJECTS: Project[] = [
   {
     title: "Christie's App",
     gradient: "radial-gradient(70% 90% at 50% 42%, #6a1022 0%, #3c0613 52%, #220309 100%)",
+    teaser: christiesApp,
     href: "#",
   },
   {
     title: "Christie's 3.0",
     gradient: "radial-gradient(70% 90% at 50% 42%, #9a92a8 0%, #7c7489 52%, #595167 100%)",
+    teaser: christies30,
     href: "#",
   },
   {
     title: "Burberry New Era",
     gradient: "radial-gradient(70% 95% at 45% 26%, #c3ccd9 0%, #808fa4 52%, #5c6980 100%)",
+    teaser: burberry,
     href: "#",
   },
 ];
@@ -115,11 +124,9 @@ export default function WorkExperience() {
                 onFocus={() => setActive(index)}
               >
                 <span className="work_block_glass" aria-hidden="true" />
-                <span
-                  className="work_block_teaser"
-                  aria-hidden="true"
-                  style={{ background: project.gradient }}
-                />
+                <span className="work_block_teaser" aria-hidden="true">
+                  <img className="work_block_img" src={project.teaser.src} alt="" />
+                </span>
               </a>
             </li>
           ))}
@@ -269,15 +276,17 @@ const css = `
   }
   .work_block[data-open] .work_block_glass { opacity: 0; }
 
-  /* Revealed teaser (a brand panel for now; the image teaser comes next). */
+  /* Revealed teaser image. */
   .work_block_teaser {
     position: absolute;
     inset: 0;
     border-radius: 0.5rem;
+    overflow: hidden;
     opacity: 0;
     transition: opacity 400ms var(--hover-ease);
   }
   .work_block[data-open] .work_block_teaser { opacity: 1; }
+  .work_block_img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
   @media (prefers-reduced-motion: reduce) {
     .work_bg::after, .work_title, .work_label, .work_block, .work_block_glass,
