@@ -13,12 +13,14 @@ const AUDIO_SRC = "/audio/ambient-loop.mp3";
 const STORAGE_KEY = "sc-volume";
 
 /**
- * The "Volume on/off" control. GSAP animates a cluster of equaliser bars while
- * sound is on; toggling plays/pauses an ambient loop. Audio stays silent until
- * the visitor opts in (browsers block autoplay), and the choice is remembered.
+ * The "Volume on/off" control. Hovering previews the equaliser as a greyed wave
+ * (a hint that sound will play); clicking brightens and enlarges it and starts
+ * an ambient loop. Audio stays silent until the visitor opts in (browsers block
+ * autoplay), and the choice is remembered.
  */
 export default function VolumeToggle({ className }: { className?: string }) {
   const [on, setOn] = useState(false);
+  const [preview, setPreview] = useState(false); // hover / focus
   const svgRef = useRef<SVGSVGElement>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
@@ -59,11 +61,21 @@ export default function VolumeToggle({ className }: { className?: string }) {
     }
   }, []);
 
-  // Drive animation + audio from the on/off state.
+  // The wave animates while previewing (hover) or on; otherwise it rests.
   useEffect(() => {
     const tl = tlRef.current;
-    if (on) {
+    if (on || preview) {
       tl?.play();
+    } else {
+      tl?.pause(0);
+      const bars = svgRef.current?.querySelectorAll("rect");
+      if (bars) gsap.set(bars, { clearProps: "transform" });
+    }
+  }, [on, preview]);
+
+  // Audio follows the on/off state only.
+  useEffect(() => {
+    if (on) {
       if (!audioRef.current) {
         const audio = new Audio(AUDIO_SRC);
         audio.loop = true;
@@ -71,12 +83,9 @@ export default function VolumeToggle({ className }: { className?: string }) {
         audioRef.current = audio;
       }
       void audioRef.current.play().catch(() => {
-        /* no track yet, or blocked — the waves still convey the state */
+        /* blocked until a gesture, or no track — the waves still convey state */
       });
     } else {
-      tl?.pause(0);
-      const bars = svgRef.current?.querySelectorAll("rect");
-      if (bars) gsap.set(bars, { clearProps: "transform" });
       audioRef.current?.pause();
     }
     try {
@@ -92,6 +101,10 @@ export default function VolumeToggle({ className }: { className?: string }) {
       className={`volume ${className ?? ""}`}
       aria-pressed={on}
       onClick={() => setOn((v) => !v)}
+      onMouseEnter={() => setPreview(true)}
+      onMouseLeave={() => setPreview(false)}
+      onFocus={() => setPreview(true)}
+      onBlur={() => setPreview(false)}
     >
       <svg
         className="volume_waves"

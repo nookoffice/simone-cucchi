@@ -49,6 +49,17 @@
   width: auto;
   flex: none;
   overflow: visible;
+  /* Greyed by default and on hover (hover just adds the wave motion). */
+  opacity: 0.5;
+  transform-origin: left center;
+  transition:
+    opacity 320ms var(--motion-ease),
+    transform 320ms var(--motion-ease);
+}
+/* On: brighten and enlarge from the greyed preview. */
+.volume_waves[data-on] {
+  opacity: 1;
+  transform: scale(1.3);
 }
 .volume_waves rect {
   transform: scaleY(0.4);
@@ -74,7 +85,8 @@ html.reveal-ready [data-reveal].is-revealed {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .nav-underline::after {
+  .nav-underline::after,
+  .volume_waves {
     transition-duration: 0.01ms;
   }
   html.reveal-ready [data-reveal],
