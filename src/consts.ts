@@ -1,8 +1,8 @@
 /** Site name. Appended to every page title and used as `og:site_name`. */
-export const SITE_NAME = "Lumos Framework";
+export const SITE_NAME = "Simone Cucchi";
 /** Fallback meta description for pages that don't set their own. */
 export const SITE_DESCRIPTION =
-  "Lumos is a cutting-edge framework for building Next.js sites. It's designed with efficiency, scaleability, and accessibility at its core.";
+  "Award-winning multidisciplinary digital designer and art director with over 16 years designing for Apple, Christie's, Burberry, Givenchy, LVMH and more.";
 /** Canonical origin. Resolves canonical URLs, social images, and the sitemap. */
 export const SITE_URL = "https://preview.lumosframework.com";
 /** BCP 47 locale tag used to format dates and numbers. */
