@@ -54,25 +54,39 @@ export default function WorkExperience() {
               <circle cx="4" cy="4" r="4" fill="currentColor" />
             </svg>
           </span>
+          {/* Shown only while a project is active. */}
+          <nav className="work_topnav" aria-label="Sections">
+            <a className="work_label" href="/work">Work</a>
+            <a className="work_label" href="#">About</a>
+            <a className="work_label" href="#">Misc</a>
+          </nav>
           <p className="work_label">51.5072° N, 0.1276° W</p>
         </div>
 
         <div className="work_row work_row-mid">
-          <nav className="work_nav" aria-label="Primary">
-            <a className="work_label work_name" href="/">Simone Cucchi</a>
-            <ul className="work_nav_list">
-              <li>
-                <a className="work_label" href="/work">Work</a>
-              </li>
-              <li>
-                <a className="work_label" href="#">About</a>
-              </li>
-              <li>
-                <a className="work_label" href="#">Contact</a>
-              </li>
-            </ul>
-          </nav>
-          <a className="work_plus" href="/" aria-label="Home">
+          <div className="work_lead">
+            {/* Side nav by default; a "back home" minus while a project is active. */}
+            <nav className="work_sidenav" aria-label="Primary">
+              <a className="work_label work_name" href="/">Simone Cucchi</a>
+              <ul className="work_nav_list">
+                <li>
+                  <a className="work_label" href="/work">Work</a>
+                </li>
+                <li>
+                  <a className="work_label" href="#">About</a>
+                </li>
+                <li>
+                  <a className="work_label" href="#">Contact</a>
+                </li>
+              </ul>
+            </nav>
+            <a className="work_minus" href="/" aria-label="Back to home">
+              <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+                <path d="M0 22H44" stroke="currentColor" strokeWidth="2" />
+              </svg>
+            </a>
+          </div>
+          <a className="work_plus" href="#" aria-label="Next">
             <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
               <path d="M22 0V44M0 22H44" stroke="currentColor" strokeWidth="2" />
             </svg>
@@ -128,8 +142,7 @@ const css = `
     isolation: isolate;
   }
 
-  /* Background layers: the base grey sits under the brand gradient, which
-     fades in when a project is active. */
+  /* Base grey under a brand gradient that fades in when a project is active. */
   .work_bg {
     position: absolute;
     inset: 0;
@@ -144,12 +157,8 @@ const css = `
     opacity: 0;
     transition: opacity 500ms var(--hover-ease);
   }
-  .work_wrap[data-active] {
-    --work-text: var(--light-100);
-  }
-  .work_wrap[data-active] .work_bg::after {
-    opacity: 1;
-  }
+  .work_wrap[data-active] { --work-text: var(--light-100); }
+  .work_wrap[data-active] .work_bg::after { opacity: 1; }
 
   .work_frame {
     position: relative;
@@ -161,15 +170,14 @@ const css = `
     gap: var(--space-6);
     pointer-events: none;
   }
-  .work_frame a {
-    pointer-events: auto;
-  }
+  .work_frame a { pointer-events: auto; }
+
   .work_row {
     display: flex;
     justify-content: space-between;
     gap: var(--space-5);
   }
-  .work_row-top { align-items: flex-start; }
+  .work_row-top { position: relative; align-items: flex-start; }
   .work_row-mid { align-items: center; }
   .work_row-bottom { align-items: flex-end; }
 
@@ -187,21 +195,37 @@ const css = `
   a.work_label { transition: color 500ms var(--hover-ease), opacity var(--hover-duration) var(--hover-ease); }
   a.work_label:hover { opacity: 0.55; }
 
-  .work_nav { display: flex; align-items: baseline; gap: var(--space-6); }
+  /* Side nav (default) and top nav (active) cross-fade. */
+  .work_lead { position: relative; display: flex; align-items: center; }
+  .work_sidenav { display: flex; align-items: baseline; gap: var(--space-6); transition: opacity 400ms var(--hover-ease); }
   .work_nav_list { display: flex; gap: var(--space-6); }
+  .work_wrap[data-active] .work_sidenav { opacity: 0; pointer-events: none; }
+
+  .work_topnav {
+    position: absolute;
+    left: 50%;
+    translate: -50% 0;
+    display: flex;
+    gap: var(--space-6);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 400ms var(--hover-ease);
+  }
+  .work_wrap[data-active] .work_topnav { opacity: 1; pointer-events: auto; }
 
   .work_dot { display: block; color: var(--work-text); translate: 0 0.5em; transition: color 500ms var(--hover-ease); }
-  .work_plus { display: block; width: clamp(1.75rem, 2.3vw, 2.75rem); color: var(--work-text); flex-shrink: 0; transition: color 500ms var(--hover-ease); }
-  .work_plus svg { width: 100%; height: auto; }
 
-  /* Centre column: the project title sits behind the stack of blocks. */
-  .work_center {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    display: grid;
-    place-items: center;
-  }
+  .work_plus,
+  .work_minus { display: block; width: clamp(1.75rem, 2.3vw, 2.75rem); color: var(--work-text); flex-shrink: 0; transition: color 500ms var(--hover-ease), opacity 400ms var(--hover-ease); }
+  .work_plus svg,
+  .work_minus svg { width: 100%; height: auto; }
+
+  /* The minus (back home) only while a project is active. */
+  .work_minus { position: absolute; left: 0; top: 50%; translate: 0 -50%; opacity: 0; pointer-events: none; }
+  .work_wrap[data-active] .work_minus { opacity: 1; pointer-events: auto; }
+
+  /* Centre column: the project title behind the stack of blocks. */
+  .work_center { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; }
   .work_title {
     position: absolute;
     margin: 0;
@@ -218,37 +242,29 @@ const css = `
   }
   .work_wrap[data-active] .work_title { opacity: 1; }
 
-  .work_list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.375rem;
-    width: clamp(10rem, 16vw, 12rem);
-  }
+  .work_list { display: flex; flex-direction: column; gap: 0.375rem; width: clamp(10rem, 16vw, 12rem); }
   .work_item { display: block; }
 
   .work_block {
     position: relative;
     display: block;
     aspect-ratio: 192 / 45;
-    border-radius: 100vw;
+    border-radius: 0.75rem;
     overflow: hidden;
     transition: aspect-ratio 400ms var(--hover-ease);
   }
-  .work_block[data-open] {
-    aspect-ratio: 192 / 120;
-  }
+  .work_block[data-open] { aspect-ratio: 192 / 120; }
 
   /* Default: a glass bar. */
   .work_block_glass {
     position: absolute;
     inset: 0;
-    border-radius: 100vw;
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.85) 0%, rgba(210, 210, 210, 0.6) 45%, rgba(255, 255, 255, 0.5) 100%);
+    border-radius: 0.75rem;
+    background: linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(210,210,210,0.6) 45%, rgba(255,255,255,0.5) 100%);
     box-shadow:
-      inset 0 0 0 1px rgba(0, 0, 0, 0.22),
-      inset 0 2px 3px rgba(255, 255, 255, 0.9),
-      inset 0 -2px 4px rgba(0, 0, 0, 0.12);
+      inset 0 0 0 1px rgba(0,0,0,0.22),
+      inset 0 2px 3px rgba(255,255,255,0.9),
+      inset 0 -2px 4px rgba(0,0,0,0.12);
     transition: opacity 400ms var(--hover-ease);
   }
   .work_block[data-open] .work_block_glass { opacity: 0; }
@@ -257,21 +273,15 @@ const css = `
   .work_block_teaser {
     position: absolute;
     inset: 0;
-    border-radius: 1.25rem;
+    border-radius: 0.5rem;
     opacity: 0;
     transition: opacity 400ms var(--hover-ease);
   }
   .work_block[data-open] .work_block_teaser { opacity: 1; }
 
   @media (prefers-reduced-motion: reduce) {
-    .work_bg::after,
-    .work_title,
-    .work_label,
-    .work_block,
-    .work_block_glass,
-    .work_block_teaser,
-    .work_dot,
-    .work_plus { transition-duration: 0.01ms; }
+    .work_bg::after, .work_title, .work_label, .work_block, .work_block_glass,
+    .work_block_teaser, .work_dot, .work_plus, .work_minus, .work_sidenav, .work_topnav { transition-duration: 0.01ms; }
   }
 }
 `;
