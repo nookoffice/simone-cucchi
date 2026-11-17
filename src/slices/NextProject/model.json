@@ -11,10 +11,43 @@
       "imageUrl": "",
       "version": "",
       "primary": {
-        "title": { "type": "Text", "config": { "label": "Title", "placeholder": "Next project" } },
-        "subtitle": { "type": "Text", "config": { "label": "Subtitle", "placeholder": "Disciplines" } },
-        "image": { "type": "Image", "config": { "label": "Background", "constraint": {}, "thumbnails": [] } },
-        "link": { "type": "Link", "config": { "label": "Link", "allowTargetBlank": true } }
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": "Next project"
+          }
+        },
+        "subtitle": {
+          "type": "Text",
+          "config": {
+            "label": "Subtitle",
+            "placeholder": "Disciplines"
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Background",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "link": {
+          "type": "Link",
+          "config": {
+            "label": "Link",
+            "allowTargetBlank": true
+          }
+        },
+        "image_mobile": {
+          "type": "Image",
+          "config": {
+            "label": "Background (mobile)",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
       }
     }
   ]

@@ -5,6 +5,7 @@ import { PrismicNextLink } from "@prismicio/next";
 import type { SliceComponentProps } from "@prismicio/react";
 import { type CSSProperties, useState } from "react";
 import { CONTACT_EMAIL } from "@/consts";
+import VolumeToggle from "@/components/VolumeToggle";
 import "./index.css";
 
 export type WorkListProps = SliceComponentProps<Content.WorkListSlice>;
@@ -72,7 +73,7 @@ export default function WorkList({ slice }: WorkListProps) {
         </div>
 
         <div className="work_row work_row-bottom">
-          <p className="work_label">Volume on</p>
+          <VolumeToggle className="work_label" />
           <p className="work_label">2011 - 2025 ©</p>
         </div>
       </div>

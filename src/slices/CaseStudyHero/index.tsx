@@ -2,6 +2,8 @@ import { asText, type Content, isFilled } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 import type { SliceComponentProps } from "@prismicio/react";
 import { CONTACT_EMAIL } from "@/consts";
+import ResponsiveImage from "@/components/ResponsiveImage";
+import VolumeToggle from "@/components/VolumeToggle";
 import "./index.css";
 
 export type CaseStudyHeroProps = SliceComponentProps<Content.CaseStudyHeroSlice>;
@@ -11,13 +13,11 @@ export type CaseStudyHeroProps = SliceComponentProps<Content.CaseStudyHeroSlice>
  * image (shared `project-hero` element), over which sit the title and intro.
  */
 export default function CaseStudyHero({ slice }: CaseStudyHeroProps) {
-  const { title, intro, image } = slice.primary;
+  const { title, intro, image, image_mobile } = slice.primary;
 
   return (
     <header className="csh_hero">
-      {isFilled.image(image) && (
-        <img className="csh_img" src={image.url} alt={image.alt ?? ""} />
-      )}
+      <ResponsiveImage className="csh_img" desktop={image} mobile={image_mobile} />
       <div className="csh_tint" aria-hidden="true" />
 
       <div className="csh_frame">
@@ -44,7 +44,7 @@ export default function CaseStudyHero({ slice }: CaseStudyHeroProps) {
         </div>
 
         <div className="csh_row csh_row-bottom">
-          <p className="csh_label">Volume on</p>
+          <VolumeToggle className="csh_label" />
           <p className="csh_label">2011 - 2025 ©</p>
         </div>
       </div>

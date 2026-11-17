@@ -26,6 +26,36 @@
   transform-origin: left center;
 }
 
+/* Volume toggle — equaliser bars beside the label; typography comes from the
+   page's own label class passed in. Bars sit muted (short) until sound is on. */
+.volume {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  appearance: none;
+  -webkit-appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: opacity var(--hover-duration) var(--hover-ease);
+}
+.volume:hover {
+  opacity: 0.6;
+}
+.volume_waves {
+  height: 0.85em;
+  width: auto;
+  flex: none;
+  overflow: visible;
+}
+.volume_waves rect {
+  transform: scaleY(0.4);
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
 /* Scroll reveal — content lifts and fades in as it enters the viewport.
    Progressive enhancement: hidden only once the observer marks the page
    ready, so without JS everything shows normally. */

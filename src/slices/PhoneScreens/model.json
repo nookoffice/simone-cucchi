@@ -16,9 +16,38 @@
           "config": {
             "label": "Screens",
             "fields": {
-              "image": { "type": "Image", "config": { "label": "Screenshot", "constraint": {}, "thumbnails": [] } },
-              "alt": { "type": "Text", "config": { "label": "Description", "placeholder": "What this screen shows" } },
-              "raised": { "type": "Boolean", "config": { "label": "Raised", "default_value": false, "placeholder_false": "Inline", "placeholder_true": "Lifted" } }
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "Screenshot",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "alt": {
+                "type": "Text",
+                "config": {
+                  "label": "Description",
+                  "placeholder": "What this screen shows"
+                }
+              },
+              "raised": {
+                "type": "Boolean",
+                "config": {
+                  "label": "Raised",
+                  "default_value": false,
+                  "placeholder_false": "Inline",
+                  "placeholder_true": "Lifted"
+                }
+              },
+              "image_mobile": {
+                "type": "Image",
+                "config": {
+                  "label": "Screenshot (mobile)",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              }
             }
           }
         }

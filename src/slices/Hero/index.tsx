@@ -2,6 +2,7 @@ import type { Content } from "@prismicio/client";
 import type { SliceComponentProps } from "@prismicio/react";
 import Link from "next/link";
 import { CONTACT_EMAIL } from "@/consts";
+import VolumeToggle from "@/components/VolumeToggle";
 import heroObject from "./hero-object.jpg";
 import "./index.css";
 
@@ -80,7 +81,7 @@ export default function Hero({ slice }: HeroProps) {
         </div>
 
         <div className="hero_row hero_row-bottom">
-          <p className="hero_label">Volume on</p>
+          <VolumeToggle className="hero_label" />
           <p className="hero_label">{COPYRIGHT}</p>
         </div>
       </div>

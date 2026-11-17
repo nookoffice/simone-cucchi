@@ -3,6 +3,7 @@ import { PrismicNextLink } from "@prismicio/next";
 import type { SliceComponentProps } from "@prismicio/react";
 import type { CSSProperties } from "react";
 import { CONTACT_EMAIL } from "@/consts";
+import VolumeToggle from "@/components/VolumeToggle";
 import "./index.css";
 
 export type AboutIndexProps = SliceComponentProps<Content.AboutIndexSlice>;
@@ -49,7 +50,7 @@ export default function AboutIndex({ slice }: AboutIndexProps) {
       </ul>
 
       <footer className="about_row about_row-bottom">
-        <p className="about_label">Volume on</p>
+        <VolumeToggle className="about_label" />
         <p className="about_label">2011 - 2025 ©</p>
       </footer>
     </div>

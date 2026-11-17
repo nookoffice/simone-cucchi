@@ -11,9 +11,37 @@
       "imageUrl": "",
       "version": "",
       "primary": {
-        "title": { "type": "Text", "config": { "label": "Title", "placeholder": "Project name" } },
-        "intro": { "type": "StructuredText", "config": { "label": "Intro", "allowTargetBlank": false, "single": "paragraph" } },
-        "image": { "type": "Image", "config": { "label": "Background", "constraint": {}, "thumbnails": [] } }
+        "title": {
+          "type": "Text",
+          "config": {
+            "label": "Title",
+            "placeholder": "Project name"
+          }
+        },
+        "intro": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Intro",
+            "allowTargetBlank": false,
+            "single": "paragraph"
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Background",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image_mobile": {
+          "type": "Image",
+          "config": {
+            "label": "Background (mobile)",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
       }
     }
   ]

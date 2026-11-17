@@ -15,7 +15,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: clamp(14rem, 27vw, 32.75rem);
+    width: clamp(12rem, 20vw, 28rem);
     aspect-ratio: 524 / 508;
     translate: -50% -50%;
     border-radius: 38%;
@@ -80,11 +80,11 @@
   .hero_nav {
     display: flex;
     align-items: baseline;
-    gap: var(--space-6);
+    gap: var(--space-5);
   }
   .hero_nav_list {
     display: flex;
-    gap: var(--space-6);
+    gap: var(--space-5);
   }
 
   .hero_dot {
@@ -103,8 +103,9 @@
     height: auto;
   }
 
-  /* The nav row wraps on narrow screens so the name and links stay legible. */
-  @media (width < 48rem) {
+  /* Below the width where a horizontal nav provably clears the centred
+     object, stack the name over the links so text never crosses the image. */
+  @media (width < 96rem) {
     .hero_nav {
       flex-direction: column;
       gap: var(--space-3);

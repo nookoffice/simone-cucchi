@@ -11,8 +11,29 @@
       "imageUrl": "",
       "version": "",
       "primary": {
-        "eyebrow": { "type": "Text", "config": { "label": "Eyebrow", "placeholder": "Section label" } },
-        "image": { "type": "Image", "config": { "label": "Image", "constraint": {}, "thumbnails": [] } }
+        "eyebrow": {
+          "type": "Text",
+          "config": {
+            "label": "Eyebrow",
+            "placeholder": "Section label"
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image_mobile": {
+          "type": "Image",
+          "config": {
+            "label": "Image (mobile)",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
       }
     }
   ]

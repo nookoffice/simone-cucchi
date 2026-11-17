@@ -483,6 +483,11 @@ export interface CaseStudyHeroSliceDefaultPrimary {
 	 * Background field in *CaseStudyHero → Default → Primary*
 	 */
 	image: prismic.ImageField<never>;
+
+	/**
+	 * Background (mobile) field in *CaseStudyHero → Default → Primary*
+	 */
+	image_mobile: prismic.ImageField<never>;
 }
 
 /**
@@ -510,6 +515,11 @@ export interface PhoneScreensSliceDefaultPrimaryScreensItem {
 	 * Screenshot field in *PhoneScreens → Default → Primary → Screens*
 	 */
 	image: prismic.ImageField<never>;
+
+	/**
+	 * Screenshot (mobile) field in *PhoneScreens → Default → Primary → Screens*
+	 */
+	image_mobile: prismic.ImageField<never>;
 
 	/**
 	 * Description field in *PhoneScreens → Default → Primary → Screens*
@@ -562,6 +572,11 @@ export interface SectionImageSliceDefaultPrimary {
 	 * Image field in *SectionImage → Default → Primary*
 	 */
 	image: prismic.ImageField<never>;
+
+	/**
+	 * Image (mobile) field in *SectionImage → Default → Primary*
+	 */
+	image_mobile: prismic.ImageField<never>;
 }
 
 /**
@@ -730,6 +745,11 @@ export interface NextProjectSliceDefaultPrimary {
 	 * Background field in *NextProject → Default → Primary*
 	 */
 	image: prismic.ImageField<never>;
+
+	/**
+	 * Background (mobile) field in *NextProject → Default → Primary*
+	 */
+	image_mobile: prismic.ImageField<never>;
 
 	/**
 	 * Link field in *NextProject → Default → Primary*
