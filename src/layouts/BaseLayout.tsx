@@ -83,29 +83,31 @@ const pageCss = `
     animation-timing-function: step-start;
   }
 
+  /* Pages swipe upward: the old page lifts away, the new one rises into
+     place from below. Slower and on the site's signature easing. */
   ::view-transition-old(.page-fade) {
-    animation: 450ms var(--open-ease, ease) both page-slide-out;
+    animation: 760ms var(--motion-ease, ease) both page-slide-out;
   }
 
   ::view-transition-new(.page-fade) {
-    animation: 450ms var(--open-ease, ease) both page-slide-in;
+    animation: 760ms var(--motion-ease, ease) both page-slide-in;
   }
 
   @keyframes page-slide-out {
     to {
       opacity: 0;
-      transform: translateX(-4%);
+      transform: translateY(-9%);
     }
   }
 
   @keyframes page-slide-in {
     from {
       opacity: 0;
-      transform: translateX(6%);
+      transform: translateY(13%);
     }
     to {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
     }
   }
 
