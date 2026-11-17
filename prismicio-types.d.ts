@@ -475,6 +475,11 @@ export interface CaseStudyHeroSliceDefaultPrimary {
 	title: prismic.KeyTextField;
 
 	/**
+	 * Discipline field in *CaseStudyHero → Default → Primary*
+	 */
+	discipline: prismic.KeyTextField;
+
+	/**
 	 * Intro field in *CaseStudyHero → Default → Primary*
 	 */
 	intro: prismic.RichTextField;

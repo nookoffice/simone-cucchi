@@ -36,7 +36,7 @@
         "link": {
           "type": "Link",
           "config": {
-            "label": "Link",
+            "label": "Next case study",
             "allowTargetBlank": true
           }
         },

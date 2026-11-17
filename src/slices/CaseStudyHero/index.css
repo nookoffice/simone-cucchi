@@ -9,14 +9,47 @@
     color: var(--light-100);
     overflow: clip;
   }
+  /* The image lives in a card that starts inset and expands to full-bleed. */
+  .csh_card {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    clip-path: inset(13% 11% round 14px);
+    will-change: clip-path;
+  }
   .csh_img {
-    position: absolute; inset: 0; z-index: -2;
+    position: absolute; inset: 0; z-index: 0;
     width: 100%; height: 100%; object-fit: cover;
-    view-transition-name: project-hero;
   }
   .csh_tint {
-    position: absolute; inset: 0; z-index: -1;
+    position: absolute; inset: 0; z-index: 1;
     background: radial-gradient(90% 90% at 50% 40%, rgba(60,6,19,0.1) 0%, rgba(10,3,6,0.78) 100%);
+  }
+  /* Card-phase caption, centred over the image. */
+  .csh_card_center {
+    position: absolute; inset: 0; z-index: 2;
+    display: grid; place-content: center; justify-items: center;
+    gap: var(--space-3);
+    padding: var(--site-margin);
+    text-align: center;
+  }
+  .csh_card_title {
+    font-family: var(--primary-family);
+    font-size: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+    font-weight: var(--primary-regular);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    color: var(--light-100);
+    margin: 0;
+  }
+  .csh_card_discipline {
+    font-family: var(--primary-family);
+    font-size: var(--text-small);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
   }
   .csh_frame {
     position: relative; z-index: 1;
@@ -46,6 +79,7 @@
     grid-template-columns: 1fr 1fr;
     gap: var(--space-8);
     align-items: end;
+    opacity: 0;
   }
   .csh_title {
     font-family: var(--primary-family);

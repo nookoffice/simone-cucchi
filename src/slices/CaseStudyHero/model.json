@@ -18,6 +18,13 @@
             "placeholder": "Project name"
           }
         },
+        "discipline": {
+          "type": "Text",
+          "config": {
+            "label": "Discipline",
+            "placeholder": "e.g. Digital product design"
+          }
+        },
         "intro": {
           "type": "StructuredText",
           "config": {
