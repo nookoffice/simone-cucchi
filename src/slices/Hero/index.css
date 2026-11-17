@@ -17,7 +17,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: clamp(16rem, 27vw, 38rem);
+    width: clamp(13rem, 21vw, 32rem);
     aspect-ratio: 1;
     translate: -50% -50%;
     pointer-events: none;
@@ -73,14 +73,20 @@
     opacity: 0.55;
   }
 
+  /* Always one row: the name and the links sit inline. */
   .hero_nav {
     display: flex;
     align-items: baseline;
-    gap: var(--space-5);
+    flex-wrap: nowrap;
+    gap: var(--space-4);
   }
   .hero_nav_list {
     display: flex;
-    gap: var(--space-5);
+    gap: var(--space-4);
+  }
+  /* Tighter tracking on the nav so one row stays clear of the centre object. */
+  .hero_nav .hero_label {
+    letter-spacing: 0.14em;
   }
 
   .hero_dot {
@@ -99,15 +105,4 @@
     height: auto;
   }
 
-  /* Below the width where a horizontal nav provably clears the centred
-     object, stack the name over the links so text never crosses the image. */
-  @media (width < 96rem) {
-    .hero_nav {
-      flex-direction: column;
-      gap: var(--space-3);
-    }
-    .hero_nav_list {
-      gap: var(--space-5);
-    }
-  }
 }
