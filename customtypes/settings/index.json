@@ -1,0 +1,95 @@
+{
+  "format": "custom",
+  "id": "settings",
+  "json": {
+    "SEO": {
+      "meta_title": {
+        "config": {
+          "label": "Meta title",
+          "placeholder": "50–60 characters. Shown in search results and the browser tab."
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta description",
+          "placeholder": "150–160 characters. Shown under the title in search results."
+        },
+        "type": "Text"
+      },
+      "og_image": {
+        "config": {
+          "constraint": {
+            "height": 630,
+            "width": 1200
+          },
+          "label": "OG image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    },
+    "Navigation": {
+      "header_links": {
+        "config": {
+          "fields": {
+            "label": {
+              "config": {
+                "label": "Label"
+              },
+              "type": "Text"
+            },
+            "link": {
+              "config": {
+                "allowTargetBlank": true,
+                "label": "Link"
+              },
+              "type": "Link"
+            }
+          },
+          "label": "Header links"
+        },
+        "type": "Group"
+      },
+      "footer_links": {
+        "config": {
+          "fields": {
+            "label": {
+              "config": {
+                "label": "Label"
+              },
+              "type": "Text"
+            },
+            "link": {
+              "config": {
+                "allowTargetBlank": true,
+                "label": "Link"
+              },
+              "type": "Link"
+            }
+          },
+          "label": "Footer links"
+        },
+        "type": "Group"
+      }
+    },
+    "Theme": {
+      "theme": {
+        "config": {
+          "default_value": "light",
+          "label": "Theme",
+          "options": [
+            "light",
+            "dark",
+            "brand"
+          ],
+          "placeholder": "Light, dark, or brand for the whole site."
+        },
+        "type": "Select"
+      }
+    }
+  },
+  "label": "Settings",
+  "repeatable": false,
+  "status": true
+}

@@ -1,0 +1,50 @@
+---
+description: Conventions for Prismic slices — theme inherit, CSS file, screenshots
+globs: src/slices/**/*
+alwaysApply: false
+---
+
+# Prismic slices
+
+## Settings
+
+Every slice has a `settings` group: `padding_top`, `padding_bottom`, `theme`.
+Pass them to the Lumos `Section` that wraps the slice.
+
+Theme options: `inherit`, `light`, `dark`, `brand`. Default is always
+`inherit` in the model (`theme.default_value`) and in code:
+
+```tsx
+theme={slice.primary.settings?.theme ?? "inherit"}
+```
+
+Never fall back to `dark`, `light`, or `brand`. Set an explicit theme only
+when the design asks for it.
+
+## CSS
+
+No CSS in the slice React file: no `Styles` helper, no `const css = \`...\``.
+Put styles in `src/slices/<Name>/index.css` under `@layer components`, and
+import at the top of `index.tsx`:
+
+```tsx
+import "./index.css";
+```
+
+The `Styles` helper stays for library components under `src/components/` only.
+A DOM script or browser state stays in the same `index.tsx` when the slice is
+a Client Component (`"use client"`).
+
+## Screenshots
+
+After building or changing a slice visually, capture
+`src/slices/<Name>/screenshot-default.png` from the local site. Crop roughly
+one viewport of the section (~1280 × 800–900), not an entire sticky scroll
+track. That file is the equivalent of Slice Machine’s “Update screenshots”
+when that button is not usable.
+
+## Content
+
+Fill the section’s Prismic content (copy, links, images, settings) in the same
+pass as the model and component. Publish after writing. See
+`.agents/skills/lumos-prismic/SKILL.md`.
