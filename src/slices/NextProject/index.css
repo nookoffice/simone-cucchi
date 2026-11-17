@@ -1,18 +1,61 @@
 @layer components {
-  .csn_next {
+  /* Tall wrapper gives the card room to expand as you scroll through it. */
+  .csn_wrap {
     position: relative;
-    display: flex;
-    min-height: 90svh;
-    padding: var(--site-margin);
-    align-items: center;
-    justify-content: center;
-    isolation: isolate;
+    height: 150svh;
     background-color: #0a0607;
-    color: var(--light-100);
-    overflow: clip;
   }
-  .csn_img { position: absolute; inset: 0; z-index: -1; width: 100%; height: 100%; object-fit: cover; }
-  .csn_content { text-align: center; display: flex; flex-direction: column; gap: var(--space-3); }
+  .csn_sticky {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+
+  .csn_card {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 100%;
+    isolation: isolate;
+    color: var(--light-100);
+  }
+
+  /* The expanding image. Starts inset (card), scrubs to full-bleed. */
+  .csn_media {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    clip-path: inset(12% 10% round 14px);
+    will-change: clip-path;
+  }
+  .csn_img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .csn_tint {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(90% 90% at 50% 45%, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.45) 100%);
+  }
+
+  .csn_content {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: grid;
+    place-content: center;
+    justify-items: center;
+    gap: var(--space-3);
+    padding: var(--site-margin);
+    text-align: center;
+    pointer-events: none;
+  }
   .csn_title {
     font-family: var(--primary-family);
     font-size: clamp(1.75rem, 1.2rem + 2.4vw, 3rem);

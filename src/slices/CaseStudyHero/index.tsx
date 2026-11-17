@@ -30,10 +30,24 @@ export default function CaseStudyHero({ slice }: CaseStudyHeroProps) {
     if (!card || !center || !lead) return;
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
+
+    // Arrived by scrolling out of the previous study: open already expanded.
+    let skipHold = false;
+    try {
+      skipHold = sessionStorage.getItem("cs-skip-hold") === "1";
+      if (skipHold) sessionStorage.removeItem("cs-skip-hold");
+    } catch {
+      /* ignore */
+    }
+
+    if (reduce || skipHold) {
       gsap.set(card, { clipPath: "inset(0% round 0px)" });
       gsap.set(center, { autoAlpha: 0 });
-      gsap.set(lead, { autoAlpha: 1, y: 0 });
+      if (reduce) {
+        gsap.set(lead, { autoAlpha: 1, y: 0 });
+      } else {
+        gsap.fromTo(lead, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" });
+      }
       return;
     }
 
