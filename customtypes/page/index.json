@@ -15,6 +15,9 @@
             "work_list": {
               "type": "SharedSlice"
             },
+            "about_index": {
+              "type": "SharedSlice"
+            },
             "case_study_hero": {
               "type": "SharedSlice"
             },

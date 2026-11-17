@@ -4,6 +4,7 @@ import { type Content, isFilled } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 import type { SliceComponentProps } from "@prismicio/react";
 import { type CSSProperties, useState } from "react";
+import { CONTACT_EMAIL } from "@/consts";
 import "./index.css";
 
 export type WorkListProps = SliceComponentProps<Content.WorkListSlice>;
@@ -41,8 +42,8 @@ export default function WorkList({ slice }: WorkListProps) {
           </span>
           <nav className="work_topnav" aria-label="Sections">
             <PrismicNextLink className="work_label" href="/work">Work</PrismicNextLink>
-            <a className="work_label" href="#">About</a>
-            <a className="work_label" href="#">Misc</a>
+            <PrismicNextLink className="work_label" href="/about">About</PrismicNextLink>
+            <a className="work_label" href={`mailto:${CONTACT_EMAIL}`}>Contact</a>
           </nav>
           <p className="work_label">51.5072° N, 0.1276° W</p>
         </div>
@@ -53,8 +54,8 @@ export default function WorkList({ slice }: WorkListProps) {
               <PrismicNextLink className="work_label work_name" href="/">Simone Cucchi</PrismicNextLink>
               <ul className="work_nav_list">
                 <li><PrismicNextLink className="work_label" href="/work">Work</PrismicNextLink></li>
-                <li><a className="work_label" href="#">About</a></li>
-                <li><a className="work_label" href="#">Contact</a></li>
+                <li><PrismicNextLink className="work_label" href="/about">About</PrismicNextLink></li>
+                <li><a className="work_label" href={`mailto:${CONTACT_EMAIL}`}>Contact</a></li>
               </ul>
             </nav>
             <PrismicNextLink className="work_minus" href="/" aria-label="Back to home">

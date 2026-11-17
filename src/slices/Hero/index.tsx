@@ -1,6 +1,7 @@
 import type { Content } from "@prismicio/client";
 import type { SliceComponentProps } from "@prismicio/react";
 import Link from "next/link";
+import { CONTACT_EMAIL } from "@/consts";
 import heroObject from "./hero-object.jpg";
 import "./index.css";
 
@@ -10,8 +11,8 @@ export type HeroProps = SliceComponentProps<Content.HeroSlice>;
 /** Fixed brand marks in the hero frame. Promote to fields if they ever vary. */
 const NAV_LINKS = [
   { label: "Work", href: "/work" },
-  { label: "About", href: "#" },
-  { label: "Contact", href: "#" },
+  { label: "About", href: "/about" },
+  { label: "Contact", href: `mailto:${CONTACT_EMAIL}` },
 ];
 const COORDINATES = "51.5072° N, 0.1276° W";
 const COPYRIGHT = "2011 - 2025 ©";

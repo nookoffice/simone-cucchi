@@ -1,0 +1,28 @@
+{
+  "id": "about_index",
+  "name": "AboutIndex",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "description": "About: a bio statement over an experience list",
+      "docURL": "",
+      "imageUrl": "",
+      "version": "",
+      "primary": {
+        "intro": { "type": "StructuredText", "config": { "label": "Intro", "allowTargetBlank": false, "single": "paragraph" } },
+        "experience": {
+          "type": "Group",
+          "config": {
+            "label": "Experience",
+            "fields": {
+              "year": { "type": "Text", "config": { "label": "Year", "placeholder": "2026" } },
+              "entry": { "type": "Text", "config": { "label": "Entry", "placeholder": "Client | Role" } }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

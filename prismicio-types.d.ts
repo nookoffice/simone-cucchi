@@ -106,7 +106,7 @@ interface HomepageDocumentData {
  */
 export type HomepageDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<HomepageDocumentData>, "homepage", Lang>;
 
-type PageDocumentDataSlicesSlice = WorkListSlice | CaseStudyHeroSlice | PhoneScreensSlice | SectionImageSlice | StatGridSlice | LeadStatementSlice | CreditListSlice | NextProjectSlice
+type PageDocumentDataSlicesSlice = WorkListSlice | AboutIndexSlice | CaseStudyHeroSlice | PhoneScreensSlice | SectionImageSlice | StatGridSlice | LeadStatementSlice | CreditListSlice | NextProjectSlice
 
 /**
  * Content for Page documents
@@ -417,6 +417,53 @@ type WorkListSliceVariation = WorkListSliceDefault
  * - **Documentation**: https://prismic.io/docs/slices
  */
 export type WorkListSlice = prismic.SharedSlice<"work_list", WorkListSliceVariation>;
+
+/**
+ * Item in *AboutIndex → Default → Primary → Experience*
+ */
+export interface AboutIndexSliceDefaultPrimaryExperienceItem {
+	/**
+	 * Year field in *AboutIndex → Default → Primary → Experience*
+	 */
+	year: prismic.KeyTextField;
+
+	/**
+	 * Entry field in *AboutIndex → Default → Primary → Experience*
+	 */
+	entry: prismic.KeyTextField;
+}
+
+/**
+ * Primary content in *AboutIndex → Default → Primary*
+ */
+export interface AboutIndexSliceDefaultPrimary {
+	/**
+	 * Intro field in *AboutIndex → Default → Primary*
+	 */
+	intro: prismic.RichTextField;
+
+	/**
+	 * Experience field in *AboutIndex → Default → Primary*
+	 */
+	experience: prismic.GroupField<Simplify<AboutIndexSliceDefaultPrimaryExperienceItem>>;
+}
+
+/**
+ * Default variation for AboutIndex Slice
+ */
+export type AboutIndexSliceDefault = prismic.SharedSliceVariation<"default", Simplify<AboutIndexSliceDefaultPrimary>, never>;
+
+/**
+ * Slice variation for *AboutIndex*
+ */
+type AboutIndexSliceVariation = AboutIndexSliceDefault
+
+/**
+ * AboutIndex Shared Slice
+ *
+ * - **API ID**: `about_index`
+ */
+export type AboutIndexSlice = prismic.SharedSlice<"about_index", AboutIndexSliceVariation>;
 
 /**
  * Primary content in *CaseStudyHero → Default → Primary*
@@ -742,6 +789,11 @@ declare module "@prismicio/client" {
 			WorkListSliceDefaultPrimary,
 			WorkListSliceVariation,
 			WorkListSliceDefault,
+			AboutIndexSlice,
+			AboutIndexSliceDefaultPrimaryExperienceItem,
+			AboutIndexSliceDefaultPrimary,
+			AboutIndexSliceVariation,
+			AboutIndexSliceDefault,
 			CaseStudyHeroSlice,
 			CaseStudyHeroSliceDefaultPrimary,
 			CaseStudyHeroSliceVariation,

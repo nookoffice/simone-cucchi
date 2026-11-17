@@ -1,6 +1,7 @@
 import { asText, type Content, isFilled } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 import type { SliceComponentProps } from "@prismicio/react";
+import { CONTACT_EMAIL } from "@/consts";
 import "./index.css";
 
 export type CaseStudyHeroProps = SliceComponentProps<Content.CaseStudyHeroSlice>;
@@ -29,8 +30,8 @@ export default function CaseStudyHero({ slice }: CaseStudyHeroProps) {
           </PrismicNextLink>
           <nav className="csh_topnav" aria-label="Sections">
             <PrismicNextLink className="csh_label" href="/work">Work</PrismicNextLink>
-            <a className="csh_label" href="#">About</a>
-            <a className="csh_label" href="#">Misc</a>
+            <PrismicNextLink className="csh_label" href="/about">About</PrismicNextLink>
+            <a className="csh_label" href={`mailto:${CONTACT_EMAIL}`}>Contact</a>
           </nav>
           <p className="csh_label">51.5072° N, 0.1276° W</p>
         </div>
