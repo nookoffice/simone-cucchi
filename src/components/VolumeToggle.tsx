@@ -5,12 +5,27 @@ import { useEffect, useRef, useState } from "react";
 
 const BARS = 5;
 /**
- * Ambient loop. Current track: "Mysterious" from Pixabay, used under the
- * Pixabay Content License (free for commercial use, no attribution required).
+ * Ambient loop. Current track: "Calm Ambient Dreamscape" by morgan-ambient
+ * (Pixabay, Pixabay Content License — free commercial use, no attribution).
  * Swap the file at this path to change it.
  */
 const AUDIO_SRC = "/audio/ambient-loop.mp3";
 const STORAGE_KEY = "sc-volume";
+
+/**
+ * One audio element shared across every toggle on the site. A singleton means
+ * the loop keeps playing across page navigation and, crucially, that turning
+ * sound off from any page stops the one and only track (no orphaned audio).
+ */
+let sharedAudio: HTMLAudioElement | null = null;
+function getAudio() {
+  if (!sharedAudio) {
+    sharedAudio = new Audio(AUDIO_SRC);
+    sharedAudio.loop = true;
+    sharedAudio.volume = 0.45;
+  }
+  return sharedAudio;
+}
 
 /**
  * The "Volume on/off" control. Hovering previews the equaliser as a greyed wave
@@ -22,7 +37,6 @@ export default function VolumeToggle({ className }: { className?: string }) {
   const [on, setOn] = useState(false);
   const [preview, setPreview] = useState(false); // hover / focus
   const svgRef = useRef<SVGSVGElement>(null);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
 
   // Build the equaliser animation once (skipped when reduced motion is set).
@@ -73,20 +87,14 @@ export default function VolumeToggle({ className }: { className?: string }) {
     }
   }, [on, preview]);
 
-  // Audio follows the on/off state only.
+  // Audio follows the on/off state only, through the shared element.
   useEffect(() => {
     if (on) {
-      if (!audioRef.current) {
-        const audio = new Audio(AUDIO_SRC);
-        audio.loop = true;
-        audio.volume = 0.5;
-        audioRef.current = audio;
-      }
-      void audioRef.current.play().catch(() => {
+      void getAudio().play().catch(() => {
         /* blocked until a gesture, or no track — the waves still convey state */
       });
     } else {
-      audioRef.current?.pause();
+      sharedAudio?.pause();
     }
     try {
       localStorage.setItem(STORAGE_KEY, on ? "on" : "off");
