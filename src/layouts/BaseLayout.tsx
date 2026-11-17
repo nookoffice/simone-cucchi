@@ -2,6 +2,7 @@ import { ViewTransition, type ReactNode } from "react";
 import SkipLink from "@/components/global/SkipLink";
 import Nav from "@/components/global/Nav";
 import Footer from "@/components/global/Footer";
+import MobileNav from "@/components/MobileNav";
 import ThemeLock from "@/components/ThemeLock";
 import { chromeLinks } from "@/prismic/chromeLinks";
 import { getSettings } from "@/prismic/seo";
@@ -50,6 +51,7 @@ export default async function BaseLayout({
         </ViewTransition>
       </main>
       {chrome && <Footer links={footerLinks} />}
+      <MobileNav />
     </div>
   );
 }

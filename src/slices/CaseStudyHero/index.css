@@ -102,4 +102,10 @@
   }
 
   ::view-transition-group(project-hero) { animation-duration: 650ms; }
+
+  /* Mobile: the hamburger replaces the top nav + coordinates (keep Back). */
+  @media (width < 72rem) {
+    .csh_topnav,
+    .csh_row-top > .csh_label { display: none; }
+  }
 }

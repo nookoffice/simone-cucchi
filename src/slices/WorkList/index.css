@@ -134,4 +134,10 @@
     .work_bg::after, .work_title, .work_label, .work_block, .work_block_glass,
     .work_block_teaser, .work_dot, .work_plus, .work_minus, .work_sidenav, .work_topnav { transition-duration: 0.01ms; }
   }
+
+  /* Mobile: the hamburger replaces the inline nav + coordinates. */
+  @media (width < 72rem) {
+    .work_sidenav, .work_topnav, .work_plus, .work_minus,
+    .work_row-top > .work_label { display: none; }
+  }
 }

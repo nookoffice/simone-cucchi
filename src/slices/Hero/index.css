@@ -111,4 +111,12 @@
     transform: rotate(90deg);
   }
 
+  /* Mobile: the hamburger replaces the inline nav, coordinates and plus. */
+  @media (width < 72rem) {
+    .hero_nav,
+    .hero_plus,
+    .hero_row-top .hero_label {
+      display: none;
+    }
+  }
 }

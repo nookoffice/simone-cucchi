@@ -81,8 +81,13 @@
   }
 
   @media (width < 48rem) {
-    .about_nav { position: static; translate: none; }
     .about_row-top { flex-wrap: wrap; gap: var(--space-4); }
     .about_item { grid-template-columns: 4rem 1fr; }
+  }
+
+  /* Mobile: the hamburger replaces the inline nav + coordinates. */
+  @media (width < 72rem) {
+    .about_nav,
+    .about_row-top > .about_label { display: none; }
   }
 }
