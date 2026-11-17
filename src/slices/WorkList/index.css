@@ -76,7 +76,11 @@
   .work_plus,
   .work_minus { display: block; width: clamp(1.75rem, 2.3vw, 2.75rem); color: var(--work-text); flex-shrink: 0; transition: color 500ms var(--hover-ease), opacity 400ms var(--hover-ease); }
   .work_plus svg,
-  .work_minus svg { width: 100%; height: auto; }
+  .work_minus svg { width: 100%; height: auto; transform-origin: center; transition: transform var(--motion-medium) var(--motion-ease); }
+  .work_plus:hover svg,
+  .work_plus:focus-visible svg { transform: rotate(90deg); }
+  .work_minus:hover svg,
+  .work_minus:focus-visible svg { transform: scaleX(0.5); }
   .work_minus { position: absolute; left: 0; top: 50%; translate: 0 -50%; opacity: 0; pointer-events: none; }
   .work_wrap[data-active] .work_minus { opacity: 1; pointer-events: auto; }
 

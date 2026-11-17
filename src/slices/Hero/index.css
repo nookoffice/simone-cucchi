@@ -103,6 +103,12 @@
   .hero_plus svg {
     width: 100%;
     height: auto;
+    transition: transform var(--motion-medium) var(--motion-ease);
+    transform-origin: center;
+  }
+  .hero_plus:hover svg,
+  .hero_plus:focus-visible svg {
+    transform: rotate(90deg);
   }
 
 }
