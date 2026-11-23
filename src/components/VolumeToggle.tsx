@@ -1,7 +1,8 @@
 "use client";
 
 import gsap from "gsap";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import RollText from "@/components/RollText";
 
 const BARS = 5;
 /**
@@ -14,8 +15,8 @@ const STORAGE_KEY = "sc-volume";
 
 /**
  * One audio element shared across every toggle on the site. A singleton means
- * the loop keeps playing across page navigation and, crucially, that turning
- * sound off from any page stops the one and only track (no orphaned audio).
+ * the loop keeps playing across page navigation and that turning sound off from
+ * any page stops the one and only track (no orphaned audio).
  */
 let sharedAudio: HTMLAudioElement | null = null;
 function getAudio() {
@@ -27,17 +28,81 @@ function getAudio() {
   return sharedAudio;
 }
 
+/* --- Shared, reactive on/off state. Every VolumeToggle (one per page, plus the
+   mobile nav) subscribes to this single store, so the label and the waves always
+   agree and a click anywhere starts or stops the one track. --- */
+let isOn = false;
+let initialised = false;
+const listeners = new Set<() => void>();
+
+/** Read the remembered preference once, on the client. */
+function ensureInit() {
+  if (initialised) return;
+  initialised = true;
+  try {
+    isOn = localStorage.getItem(STORAGE_KEY) === "on";
+  } catch {
+    /* storage unavailable — stay off */
+  }
+}
+
+function setVolumeOn(next: boolean) {
+  if (next === isOn) return;
+  isOn = next;
+  if (next) {
+    void getAudio()
+      .play()
+      .catch(() => {
+        /* blocked until a gesture, or no track — the waves still convey state */
+      });
+  } else {
+    getAudio().pause();
+  }
+  try {
+    localStorage.setItem(STORAGE_KEY, next ? "on" : "off");
+  } catch {
+    /* ignore */
+  }
+  for (const l of listeners) l();
+}
+
+function subscribe(cb: () => void) {
+  listeners.add(cb);
+  return () => {
+    listeners.delete(cb);
+  };
+}
+
 /**
- * The "Volume on/off" control. Hovering previews the equaliser as a greyed wave
- * (a hint that sound will play); clicking brightens and enlarges it and starts
- * an ambient loop. Audio stays silent until the visitor opts in (browsers block
- * autoplay), and the choice is remembered.
+ * The "Volume" control. Its label is the ACTION a click performs: while the loop
+ * plays it reads "Volume off" (click to stop); while silent it reads "Volume on"
+ * (click to start). Hovering previews the equaliser as a greyed wave; playing
+ * brightens and animates it. Audio stays silent until the visitor opts in
+ * (browsers block autoplay), and the choice is remembered across pages.
  */
 export default function VolumeToggle({ className }: { className?: string }) {
-  const [on, setOn] = useState(false);
+  const on = useSyncExternalStore(
+    subscribe,
+    () => {
+      ensureInit();
+      return isOn;
+    },
+    () => false, // server render: always off
+  );
   const [preview, setPreview] = useState(false); // hover / focus
   const svgRef = useRef<SVGSVGElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
+
+  // If a returning visitor had it on, try to resume (may be blocked until a gesture).
+  useEffect(() => {
+    if (isOn && getAudio().paused) {
+      void getAudio()
+        .play()
+        .catch(() => {
+          /* blocked — waits for a click */
+        });
+    }
+  }, []);
 
   // Build the equaliser animation once (skipped when reduced motion is set).
   useEffect(() => {
@@ -66,15 +131,6 @@ export default function VolumeToggle({ className }: { className?: string }) {
     };
   }, []);
 
-  // Restore the remembered preference.
-  useEffect(() => {
-    try {
-      if (localStorage.getItem(STORAGE_KEY) === "on") setOn(true);
-    } catch {
-      /* storage unavailable — stay off */
-    }
-  }, []);
-
   // The wave animates while previewing (hover) or on; otherwise it rests.
   useEffect(() => {
     const tl = tlRef.current;
@@ -87,28 +143,12 @@ export default function VolumeToggle({ className }: { className?: string }) {
     }
   }, [on, preview]);
 
-  // Audio follows the on/off state only, through the shared element.
-  useEffect(() => {
-    if (on) {
-      void getAudio().play().catch(() => {
-        /* blocked until a gesture, or no track — the waves still convey state */
-      });
-    } else {
-      sharedAudio?.pause();
-    }
-    try {
-      localStorage.setItem(STORAGE_KEY, on ? "on" : "off");
-    } catch {
-      /* ignore */
-    }
-  }, [on]);
-
   return (
     <button
       type="button"
       className={`volume ${className ?? ""}`}
       aria-pressed={on}
-      onClick={() => setOn((v) => !v)}
+      onClick={() => setVolumeOn(!on)}
       onMouseEnter={() => setPreview(true)}
       onMouseLeave={() => setPreview(false)}
       onFocus={() => setPreview(true)}
@@ -137,7 +177,11 @@ export default function VolumeToggle({ className }: { className?: string }) {
           />
         ))}
       </svg>
-      <span className="volume_label">Volume {on ? "on" : "off"}</span>
+      {/* Label is the action: playing → "off" (click to stop), silent → "on".
+          Wrapped in RollText for the same split-text roll as the nav links. */}
+      <span className="volume_label">
+        <RollText text={`Volume ${on ? "off" : "on"}`} />
+      </span>
     </button>
   );
 }

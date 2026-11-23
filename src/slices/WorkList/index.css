@@ -192,8 +192,8 @@
     /* Animate height, not aspect-ratio (which browsers scrub unevenly). Slower
        and weightier, with a slight lift as it opens. */
     transition:
-      height 760ms var(--motion-ease),
-      transform 760ms var(--motion-ease);
+      height 1200ms var(--motion-ease),
+      transform 1200ms var(--motion-ease);
   }
   .work_block[data-open] { height: 7.5rem; transform: translateY(-3px); }
 
@@ -208,7 +208,7 @@
   }
   .work_block[data-open] .work_block_glass { opacity: 0; }
 
-  .work_block_teaser { position: absolute; inset: 0; border-radius: 0.125rem; overflow: hidden; opacity: 0; transition: opacity 680ms var(--hover-ease); }
+  .work_block_teaser { position: absolute; inset: 0; border-radius: 0.125rem; overflow: hidden; opacity: 0; transition: opacity 1200ms var(--hover-ease); }
   .work_block[data-open] .work_block_teaser { opacity: 1; }
   .work_block_img {
     display: block;

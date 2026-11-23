@@ -54,12 +54,13 @@
   inset: 0;
   transform: translateY(110%);
 }
-a:has(.roll):hover .roll_face,
-a:has(.roll):focus-visible .roll_face {
+/* Trigger from a link OR the volume button (a <button>), so both roll on hover. */
+:is(a, .volume):has(.roll):hover .roll_face,
+:is(a, .volume):has(.roll):focus-visible .roll_face {
   transform: translateY(-110%);
 }
-a:has(.roll):hover .roll_face-clone,
-a:has(.roll):focus-visible .roll_face-clone {
+:is(a, .volume):has(.roll):hover .roll_face-clone,
+:is(a, .volume):has(.roll):focus-visible .roll_face-clone {
   transform: translateY(0);
 }
 
@@ -78,7 +79,9 @@ a:has(.roll):focus-visible .roll_face-clone {
   width: 100%;
   height: 100%;
   transform-origin: center;
-  transition: transform 0.9s var(--motion-ease);
+  /* Slow, smooth one-turn spin — accelerates and decelerates (ease-in-out)
+     rather than snapping, and takes its time. */
+  transition: transform 1.6s cubic-bezier(0.62, 0, 0.3, 1);
 }
 .logomark:hover .logomark_svg,
 .logomark:focus-visible .logomark_svg {
@@ -105,9 +108,7 @@ a:has(.roll):focus-visible .roll_face-clone {
   cursor: pointer;
   transition: opacity var(--hover-duration) var(--hover-ease);
 }
-.volume:hover {
-  opacity: 0.6;
-}
+/* Hover feedback is the split-text roll + the wave motion; no whole-button fade. */
 .volume_waves {
   height: 0.85em;
   width: auto;

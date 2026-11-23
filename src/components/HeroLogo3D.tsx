@@ -133,14 +133,15 @@ function Mark({ firstVisit }: { firstVisit: boolean }) {
     const t = intro.current.v;
     const time = state.clock.elapsedTime;
     // Gentle head-on sway (keeps the reference's front-facing read) rather than a
-    // full spin, plus an inertial lean toward the cursor.
-    const swayY = Math.sin(time * 0.3) * 0.22 * t;
-    const swayX = Math.sin(time * 0.23 + 1) * 0.06 * t;
-    lean.current.x += (-pointer.current.y * 0.2 - lean.current.x) * 0.045;
-    lean.current.y += (pointer.current.x * 0.26 - lean.current.y) * 0.045;
+    // full spin, plus an inertial lean toward the cursor. Slow frequencies and a
+    // soft follow factor keep the whole motion unhurried and smooth.
+    const swayY = Math.sin(time * 0.17) * 0.2 * t;
+    const swayX = Math.sin(time * 0.13 + 1) * 0.05 * t;
+    lean.current.x += (-pointer.current.y * 0.2 - lean.current.x) * 0.025;
+    lean.current.y += (pointer.current.x * 0.26 - lean.current.y) * 0.025;
     g.rotation.y = swayY + lean.current.y;
     g.rotation.x = swayX + lean.current.x;
-    const s = 0.0146 * (0.88 + 0.12 * t);
+    const s = 0.0095 * (0.88 + 0.12 * t);
     g.scale.setScalar(s * 100); // unit group; mesh carries the SVG→world flip
   });
 
