@@ -7,6 +7,7 @@ import gsap from "gsap";
 import { useEffect, useRef } from "react";
 import { CONTACT_EMAIL } from "@/consts";
 import ResponsiveImage from "@/components/ResponsiveImage";
+import RollText from "@/components/RollText";
 import VolumeToggle from "@/components/VolumeToggle";
 import "./index.css";
 
@@ -28,6 +29,8 @@ export default function CaseStudyHero({ slice }: CaseStudyHeroProps) {
     const center = root.querySelector<HTMLElement>(".csh_card_center");
     const lead = root.querySelector<HTMLElement>(".csh_lead");
     if (!card || !center || !lead) return;
+    // Stagger the title and intro in one after another rather than together.
+    const leadItems = Array.from(lead.children) as HTMLElement[];
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -40,30 +43,63 @@ export default function CaseStudyHero({ slice }: CaseStudyHeroProps) {
       /* ignore */
     }
 
-    if (reduce || skipHold) {
-      gsap.set(card, { clipPath: "inset(0% round 0px)" });
+    // The card is a sized box: state 2 is a ~73% centred card (CSS default), full
+    // is edge-to-edge. The work-card view transition morphs into state 2.
+    const FULL = { top: "0%", left: "0%", width: "100%", height: "100%", borderRadius: 0 };
+    const STATE2 = { top: "13%", left: "13.5%", width: "73%", height: "74%", borderRadius: 14 };
+
+    if (reduce) {
+      gsap.set(card, FULL);
       gsap.set(center, { autoAlpha: 0 });
-      if (reduce) {
-        gsap.set(lead, { autoAlpha: 1, y: 0 });
-      } else {
-        gsap.fromTo(lead, { autoAlpha: 0, y: 14 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" });
-      }
+      gsap.set(lead, { autoAlpha: 1 });
+      gsap.set(leadItems, { autoAlpha: 1, y: 0 });
       return;
     }
 
+    gsap.set(lead, { autoAlpha: 1 });
+    gsap.set(leadItems, { autoAlpha: 0, y: 24 });
+
+    // Arrived by scrolling out of the previous study: open already full-bleed.
+    if (skipHold) {
+      gsap.set(card, FULL);
+      gsap.set(center, { autoAlpha: 0 });
+      gsap.to(leadItems, {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.9,
+        ease: "power3.out",
+        stagger: 0.16,
+        delay: 0.15,
+      });
+      return;
+    }
+
+    // Arrived by clicking a work card: the view transition morphs that card into
+    // the state-2 card first, so hold a beat longer before the caption + expand.
+    let fromWork = false;
+    try {
+      fromWork = sessionStorage.getItem("cs-morph") === "1";
+      if (fromWork) sessionStorage.removeItem("cs-morph");
+    } catch {
+      /* ignore */
+    }
+    const capIn = fromWork ? 1 : 0.3;
+    const expandAt = fromWork ? 1.8 : 1.2;
+
+    // State 2 holds (title + discipline centred on the card), then the card
+    // expands to full-bleed as the caption fades out and the lead comes in.
+    gsap.set(card, STATE2);
+    gsap.set(center, { autoAlpha: 0 });
+
     const tl = gsap.timeline();
-    tl.set(card, { clipPath: "inset(13% 11% round 14px)" });
-    tl.set(center, { autoAlpha: 1 });
-    tl.set(lead, { autoAlpha: 0, y: 18 });
-    // Hold on the card, then expand the image to full-bleed.
-    tl.to(card, {
-      clipPath: "inset(0% round 0px)",
-      duration: 1.1,
-      ease: "power3.inOut",
-      delay: 1,
-    });
-    tl.to(center, { autoAlpha: 0, duration: 0.45 }, "<");
-    tl.to(lead, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.4");
+    tl.to(center, { autoAlpha: 1, duration: 0.5, ease: "power2.out" }, capIn);
+    tl.to(card, { ...FULL, duration: 1.2, ease: "power3.inOut" }, expandAt);
+    tl.to(center, { autoAlpha: 0, duration: 0.5 }, "<");
+    tl.to(
+      leadItems,
+      { autoAlpha: 1, y: 0, duration: 0.9, ease: "power3.out", stagger: 0.16 },
+      "-=0.6",
+    );
 
     return () => {
       tl.kill();
@@ -73,7 +109,7 @@ export default function CaseStudyHero({ slice }: CaseStudyHeroProps) {
   return (
     <header className="csh_hero" ref={rootRef}>
       <noscript>
-        <style>{`.csh_card{clip-path:none!important}.csh_lead{opacity:1!important}.csh_card_center{display:none!important}`}</style>
+        <style>{`.csh_card{top:0!important;left:0!important;width:100%!important;height:100%!important;border-radius:0!important}.csh_lead{opacity:1!important}.csh_card_center{display:none!important}`}</style>
       </noscript>
       <div className="csh_card">
         <ResponsiveImage className="csh_img" desktop={image} mobile={image_mobile} />
@@ -92,12 +128,12 @@ export default function CaseStudyHero({ slice }: CaseStudyHeroProps) {
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
               <path d="M10 2 4 8l6 6" stroke="currentColor" strokeWidth="1.5" />
             </svg>
-            <span className="csh_label">Back</span>
+            <span className="csh_label"><RollText text="Back" /></span>
           </PrismicNextLink>
           <nav className="csh_topnav" aria-label="Sections">
-            <PrismicNextLink className="csh_label nav-underline" href="/work">Work</PrismicNextLink>
-            <PrismicNextLink className="csh_label nav-underline" href="/about">About</PrismicNextLink>
-            <a className="csh_label nav-underline" href={`mailto:${CONTACT_EMAIL}`}>Contact</a>
+            <PrismicNextLink className="csh_label nav-underline" href="/work"><RollText text="Work" /></PrismicNextLink>
+            <PrismicNextLink className="csh_label nav-underline" href="/about"><RollText text="About" /></PrismicNextLink>
+            <a className="csh_label nav-underline" href={`mailto:${CONTACT_EMAIL}`}><RollText text="Contact" /></a>
           </nav>
           <p className="csh_label">51.5072° N, 0.1276° W</p>
         </div>

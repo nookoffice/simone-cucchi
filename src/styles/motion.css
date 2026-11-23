@@ -25,6 +25,70 @@
   transform: scaleX(1);
   transform-origin: left center;
 }
+/* Where a split-text roll is present, drop the underline so the hover is
+   just the roll. */
+.nav-underline:has(.roll)::after {
+  content: none;
+}
+
+/* Split-text hover — each letter rolls up to a duplicate beneath it, staggered
+   left to right. The text is wrapped in <RollText>; the roll is driven from the
+   surrounding link so no marker class is needed. */
+.roll,
+.roll_vis {
+  display: inline-flex;
+}
+.roll_char {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+.roll_face {
+  display: block;
+  transition: transform var(--motion-medium) var(--motion-ease);
+  transition-delay: calc(var(--ri, 0) * 24ms);
+}
+.roll_face-clone {
+  position: absolute;
+  inset: 0;
+  transform: translateY(110%);
+}
+a:has(.roll):hover .roll_face,
+a:has(.roll):focus-visible .roll_face {
+  transform: translateY(-110%);
+}
+a:has(.roll):hover .roll_face-clone,
+a:has(.roll):focus-visible .roll_face-clone {
+  transform: translateY(0);
+}
+
+/* Corner logo mark — the monogram, links home, spins one full turn on hover. */
+.logomark {
+  display: inline-flex;
+  width: 1.75rem;
+  height: 1.75rem;
+  color: inherit;
+  transition: opacity var(--hover-duration) var(--hover-ease);
+}
+.logomark:hover {
+  opacity: 0.85;
+}
+.logomark_svg {
+  width: 100%;
+  height: 100%;
+  transform-origin: center;
+  transition: transform 0.9s var(--motion-ease);
+}
+.logomark:hover .logomark_svg,
+.logomark:focus-visible .logomark_svg {
+  transform: rotate(360deg);
+}
+@media (prefers-reduced-motion: reduce) {
+  .logomark_svg {
+    transition: none;
+  }
+}
 
 /* Volume toggle — equaliser bars beside the label; typography comes from the
    page's own label class passed in. Bars sit muted (short) until sound is on. */
@@ -86,7 +150,8 @@ html.reveal-ready [data-reveal].is-revealed {
 
 @media (prefers-reduced-motion: reduce) {
   .nav-underline::after,
-  .volume_waves {
+  .volume_waves,
+  .roll_face {
     transition-duration: 0.01ms;
   }
   html.reveal-ready [data-reveal],

@@ -2,12 +2,31 @@
 
 import type { Content } from "@prismicio/client";
 import type { SliceComponentProps } from "@prismicio/react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { CONTACT_EMAIL } from "@/consts";
-import HeroObject from "@/components/HeroObject";
+import LogoMark from "@/components/LogoMark";
+import RollText from "@/components/RollText";
 import VolumeToggle from "@/components/VolumeToggle";
 import "./index.css";
+
+// Real-time 3D glass monogram — client-only (WebGL), lazily loaded so it never
+// blocks first paint. The poster shows until the canvas is ready.
+const HeroLogo3D = dynamic(() => import("@/components/HeroLogo3D"), {
+  ssr: false,
+  loading: () => (
+    <div className="hero_object">
+      {/* biome-ignore lint/performance/noImgElement: tiny decorative poster */}
+      <img
+        className="hero_object_media"
+        src="/hero/logo-glass.png"
+        alt="Simone Cucchi monogram"
+        draggable={false}
+      />
+    </div>
+  ),
+});
 
 /** Props for `Hero`. */
 export type HeroProps = SliceComponentProps<Content.HeroSlice>;
@@ -21,7 +40,8 @@ const NAV_LINKS = [
 const COORDINATES = "51.5072° N, 0.1276° W";
 const COPYRIGHT = "2011 - 2025 ©";
 const PRELOAD_KEY = "sc-preloaded";
-// Roughly the preloader flicker's length (HeroObject SEQUENCE) plus a beat.
+// Beat before the frame marks begin their reveal cascade (held while the 3D
+// monogram settles in).
 const FLICKER_MS = 1150;
 
 /**
@@ -58,9 +78,10 @@ export default function Hero({ slice }: HeroProps) {
     }
 
     // First visit: a CSS keyframe reveal plays (held through the flicker, then
-    // the marks rise out of their masks); open the masks once it's done.
+    // the marks cascade out of their masks one by one); open the masks once the
+    // last mark has settled.
     root.classList.add("is-ready");
-    const timer = setTimeout(openMasks, FLICKER_MS + 1150);
+    const timer = setTimeout(openMasks, FLICKER_MS + 1850);
     return () => clearTimeout(timer);
   }, []);
 
@@ -74,18 +95,14 @@ export default function Hero({ slice }: HeroProps) {
       <noscript>
         <style>{`.hero_rise{transform:none!important}`}</style>
       </noscript>
-      {/* Centred object: flickers through the logo's materials, then settles. */}
-      <HeroObject alt="Simone Cucchi monogram" />
+      {/* Centred object: the monogram rendered as real 3D glass. */}
+      <HeroLogo3D alt="Simone Cucchi monogram" />
 
       <div className="hero_frame">
         <div className="hero_row hero_row-top">
           <span className="hero_mask">
             <span className="hero_rise">
-              <span className="hero_dot" aria-hidden="true">
-                <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                  <circle cx="4" cy="4" r="4" fill="currentColor" />
-                </svg>
-              </span>
+              <LogoMark />
             </span>
           </span>
           <span className="hero_mask">
@@ -100,20 +117,20 @@ export default function Hero({ slice }: HeroProps) {
             <span className="hero_rise">
               <nav className="hero_nav" aria-label="Primary">
                 <Link className="hero_label hero_name" href="/">
-                  Simone Cucchi
+                  <RollText text="Simone Cucchi" />
                 </Link>
                 <ul className="hero_nav_list">
                   {NAV_LINKS.map((item) =>
                     item.href.startsWith("/") ? (
                       <li key={item.label}>
                         <Link className="hero_label hero_link nav-underline" href={item.href}>
-                          {item.label}
+                          <RollText text={item.label} />
                         </Link>
                       </li>
                     ) : (
                       <li key={item.label}>
                         <a className="hero_label hero_link nav-underline" href={item.href}>
-                          {item.label}
+                          <RollText text={item.label} />
                         </a>
                       </li>
                     ),

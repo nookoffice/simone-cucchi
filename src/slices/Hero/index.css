@@ -30,6 +30,20 @@
     user-select: none;
   }
 
+  /* Live 3D canvas fills the object box; the poster fades out once it paints. */
+  .hero_canvas {
+    position: absolute;
+    inset: 0;
+  }
+  .hero_poster {
+    position: absolute;
+    inset: 0;
+    transition: opacity 0.6s var(--motion-ease);
+  }
+  .hero_poster[data-hidden] {
+    opacity: 0;
+  }
+
   /* Editorial frame: three full-width rows pinned top / centre / bottom. */
   .hero_frame {
     position: relative;
@@ -103,40 +117,54 @@
   .hero_plus svg {
     width: 100%;
     height: auto;
-    transition: transform var(--motion-medium) var(--motion-ease);
+    transition: transform 620ms var(--motion-ease);
     transform-origin: center;
   }
   .hero_plus:hover svg,
   .hero_plus:focus-visible svg {
-    transform: rotate(90deg);
+    transform: rotate(90deg) scale(0.92);
   }
 
   /* Preloader reveal masks: the frame marks start hidden below their mask and,
-     on the first visit, rise out once the flicker settles (CSS keyframes). */
+     on the first visit, rise out one after another once the flicker settles —
+     a slow, deliberate cascade rather than one quick move. */
   .hero_mask {
     display: inline-flex;
     overflow: hidden;
   }
   .hero_rise {
     display: inline-flex;
-    transform: translateY(2.5rem);
+    transform: translateY(2.75rem);
     will-change: transform;
   }
   .hero_wrap.is-shown .hero_rise {
     transform: translateY(0);
   }
   .hero_wrap.is-ready .hero_rise {
-    animation: heroRise 0.85s var(--motion-ease) 1.15s both;
+    animation: heroRise 1s var(--motion-ease) both;
   }
-  .hero_wrap.is-ready .hero_row-mid .hero_rise {
-    animation-delay: 1.23s;
+  /* Each mark gets its own beat: top-left → top-right → nav → plus → volume → ©. */
+  .hero_wrap.is-ready .hero_row-top .hero_mask:nth-child(1) .hero_rise {
+    animation-delay: 1.15s;
   }
-  .hero_wrap.is-ready .hero_row-bottom .hero_rise {
-    animation-delay: 1.31s;
+  .hero_wrap.is-ready .hero_row-top .hero_mask:nth-child(2) .hero_rise {
+    animation-delay: 1.3s;
+  }
+  .hero_wrap.is-ready .hero_row-mid .hero_mask:nth-child(1) .hero_rise {
+    animation-delay: 1.45s;
+  }
+  .hero_wrap.is-ready .hero_row-mid .hero_mask:nth-child(2) .hero_rise {
+    animation-delay: 1.6s;
+  }
+  .hero_wrap.is-ready .hero_row-bottom .hero_mask:nth-child(1) .hero_rise {
+    animation-delay: 1.75s;
+  }
+  .hero_wrap.is-ready .hero_row-bottom .hero_mask:nth-child(2) .hero_rise {
+    animation-delay: 1.9s;
   }
   @keyframes heroRise {
     from {
-      transform: translateY(2.5rem);
+      transform: translateY(2.75rem);
     }
     to {
       transform: translateY(0);

@@ -85,31 +85,29 @@ const pageCss = `
     animation-timing-function: step-start;
   }
 
-  /* Pages swipe upward: the old page lifts away, the new one rises into
-     place from below. Slower and on the site's signature easing. */
+  /* A deliberate cross-dissolve, no vertical movement: the old page fades
+     out, then the new one fades up — slow and soft so it sits with the rest
+     of the site's motion rather than lurching upward. */
   ::view-transition-old(.page-fade) {
-    animation: 760ms var(--motion-ease, ease) both page-slide-out;
+    animation: 560ms var(--motion-ease, ease) both page-fade-out;
   }
 
   ::view-transition-new(.page-fade) {
-    animation: 760ms var(--motion-ease, ease) both page-slide-in;
+    animation: 720ms var(--motion-ease, ease) 400ms both page-fade-in;
   }
 
-  @keyframes page-slide-out {
+  @keyframes page-fade-out {
     to {
       opacity: 0;
-      transform: translateY(-9%);
     }
   }
 
-  @keyframes page-slide-in {
+  @keyframes page-fade-in {
     from {
       opacity: 0;
-      transform: translateY(13%);
     }
     to {
       opacity: 1;
-      transform: translateY(0);
     }
   }
 
