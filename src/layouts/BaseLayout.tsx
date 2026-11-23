@@ -85,15 +85,17 @@ const pageCss = `
     animation-timing-function: step-start;
   }
 
-  /* A deliberate cross-dissolve, no vertical movement: the old page fades
-     out, then the new one fades up — slow and soft so it sits with the rest
-     of the site's motion rather than lurching upward. */
+  /* A deliberate two-beat fade, no vertical movement: the old page fades fully
+     out, then the new one fades in. Both use a symmetric ease-in-out (not the
+     site's front-loaded ease-out) so neither snaps — the outgoing doesn't blink
+     away and the incoming doesn't just appear. The new one starts as the old
+     finishes (a sliver of overlap avoids a hard blank). */
   ::view-transition-old(.page-fade) {
-    animation: 560ms var(--motion-ease, ease) both page-fade-out;
+    animation: 640ms cubic-bezier(0.37, 0, 0.63, 1) both page-fade-out;
   }
 
   ::view-transition-new(.page-fade) {
-    animation: 720ms var(--motion-ease, ease) 400ms both page-fade-in;
+    animation: 640ms cubic-bezier(0.37, 0, 0.63, 1) 560ms both page-fade-in;
   }
 
   @keyframes page-fade-out {

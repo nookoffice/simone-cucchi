@@ -40,7 +40,9 @@
 
   /* Bio statement: centred, uppercase, generously tracked. */
   .about_intro {
-    max-width: 68ch;
+    /* Wider measure to match the Figma (~85-char lines, e.g. the first line runs
+       to "ART DIRECTOR,") rather than wrapping early. */
+    max-width: 108ch;
     margin: clamp(5rem, 12vh, 9rem) auto 0;
     font-family: var(--primary-family);
     font-size: clamp(0.875rem, 0.74rem + 0.6vw, 1.0625rem);
@@ -49,7 +51,9 @@
     letter-spacing: 0.16em;
     text-transform: uppercase;
     text-align: center;
-    text-wrap: balance;
+    /* Fill each line to the measure (like the Figma, last line short) rather
+       than balancing into more, shorter lines. */
+    text-wrap: pretty;
     color: var(--dark-800);
   }
 
