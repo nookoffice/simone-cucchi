@@ -1,6 +1,6 @@
 "use client";
 
-import { Environment, MeshTransmissionMaterial } from "@react-three/drei";
+import { Environment, Lightformer, MeshTransmissionMaterial } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import gsap from "gsap";
 import { Suspense, useEffect, useMemo, useRef, useState } from "react";
@@ -72,9 +72,9 @@ function Mark({ firstVisit }: { firstVisit: boolean }) {
         transparent: true,
         depthWrite: false,
         uniforms: {
-          uColor: { value: new THREE.Color("#0a0a0d") },
-          uPower: { value: 2.4 },
-          uIntensity: { value: 1 },
+          uColor: { value: new THREE.Color("#060608") },
+          uPower: { value: 2.0 },
+          uIntensity: { value: 1.3 },
         },
         vertexShader: `
           varying vec3 vNormal;
@@ -190,14 +190,39 @@ function Mark({ firstVisit }: { firstVisit: boolean }) {
 function Studio() {
   return (
     <>
-      <ambientLight intensity={0.15} />
-      <directionalLight position={[3, 6, 4]} intensity={0.5} />
-      {/* Real studio HDRI, bundled in /public. drei's `preset="studio"` fetches
-          this same HDRI from a CDN that silently fails (here and in production),
-          leaving the glass with no reflections and reading as flat matte plastic.
-          The HDRI's rich, contrasty light is what makes the transmission read as
-          real glass — crisp reflections, bright glints, dark grazing edges. */}
-      <Environment files="/hero/studio.hdr" environmentIntensity={0.6} />
+      <ambientLight intensity={0.08} />
+      {/* A dark studio built from soft light panels — no network HDRI, so it can't
+          silently fail. The dark surround keeps the glass body smoky and the
+          rounded edges near-black (the darker-glass look of the reference), while
+          the bright rectangular softboxes give the crisp specular streaks and
+          glints that read as thick, high-end glass. A faint HDRI underneath adds
+          fine reflection detail without lifting the body. */}
+      <Environment resolution={512} environmentIntensity={0.42}>
+        <color attach="background" args={["#07070a"]} />
+        {/* Broad soft key from above. */}
+        <Lightformer form="rect" intensity={2.2} color="#ffffff" position={[0, 5, 1]} scale={[10, 4, 1]} />
+        {/* Tall side softboxes — the bright vertical streaks down the glass edges. */}
+        <Lightformer
+          form="rect"
+          intensity={2.8}
+          color="#eef2f8"
+          position={[-5, 1, 2]}
+          rotation={[0, Math.PI / 2, 0]}
+          scale={[6, 9, 1]}
+        />
+        <Lightformer
+          form="rect"
+          intensity={2.8}
+          color="#ffffff"
+          position={[5, 0, 2]}
+          rotation={[0, -Math.PI / 2, 0]}
+          scale={[6, 9, 1]}
+        />
+        {/* Small bright front glint. */}
+        <Lightformer form="rect" intensity={3.2} color="#ffffff" position={[0, -1.5, 4]} scale={[3, 3, 1]} />
+        {/* Back ring for a bright outline on the far rounded edges. */}
+        <Lightformer form="ring" intensity={1.3} color="#ffffff" position={[0, 0, -5]} scale={[7, 7, 1]} />
+      </Environment>
     </>
   );
 }
