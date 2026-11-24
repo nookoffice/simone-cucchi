@@ -8,7 +8,8 @@
 
 @layer components {
   .work_wrap {
-    --work-text: var(--dark-800);
+    /* The page now sits on a dark WebGL field, so the frame reads light throughout. */
+    --work-text: var(--light-100);
     --work-accent: #3c0613;
     position: relative;
     display: flex;
@@ -21,7 +22,15 @@
     transition: --work-accent 680ms var(--hover-ease);
   }
 
-  .work_bg { position: absolute; inset: 0; z-index: -1; background-color: #e2e2e2; }
+  /* Neutral charcoal field (the resting WebGL palette), shown behind the canvas
+     and when WebGL is unavailable. */
+  .work_bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(140% 130% at 44% -6%, #6a6a6a 0%, #2a2a2a 30%, #151515 65%, #000 100%);
+  }
 
   /* Real-time WebGL glass slabs: a click-through canvas above the flood but below
      the blocks + title, so resting blocks (transparent once the CSS glass is

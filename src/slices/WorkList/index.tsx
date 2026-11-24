@@ -195,6 +195,7 @@ export default function WorkList({ slice }: WorkListProps) {
         listRef={listRef}
         count={projects.length}
         activeIndex={active}
+        activeSlug={activeProject ? floodSlug(activeProject.title) ?? null : null}
         onReady={() => setSlabsReady(true)}
       />
 
