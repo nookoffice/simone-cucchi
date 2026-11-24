@@ -72,7 +72,7 @@
 
   .hero_label {
     font-family: var(--primary-family);
-    font-size: clamp(0.8125rem, 0.72rem + 0.5vw, 1rem);
+    font-size: clamp(0.6875rem, 0.62rem + 0.35vw, 0.8125rem);
     font-weight: var(--primary-regular);
     line-height: var(--line-height-large);
     letter-spacing: var(--letter-spacing-wide);
