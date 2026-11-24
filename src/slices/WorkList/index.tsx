@@ -234,7 +234,7 @@ export default function WorkList({ slice }: WorkListProps) {
 
         <div className="work_row work_row-bottom">
           <VolumeToggle className="work_label" />
-          <p className="work_label">2011 - 2025 ©</p>
+          <p className="work_label">2011 - 2026 ©</p>
         </div>
       </div>
 

@@ -152,7 +152,7 @@ export default function CaseStudyHero({ slice }: CaseStudyHeroProps) {
 
         <div className="csh_row csh_row-bottom">
           <VolumeToggle className="csh_label" />
-          <p className="csh_label">2011 - 2025 ©</p>
+          <p className="csh_label">2011 - 2026 ©</p>
         </div>
       </div>
 

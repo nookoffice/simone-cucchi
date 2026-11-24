@@ -38,7 +38,7 @@ const NAV_LINKS = [
   { label: "Contact", href: `mailto:${CONTACT_EMAIL}` },
 ];
 const COORDINATES = "51.5072° N, 0.1276° W";
-const COPYRIGHT = "2011 - 2025 ©";
+const COPYRIGHT = "2011 - 2026 ©";
 const PRELOAD_KEY = "sc-preloaded";
 // Beat before the frame marks begin their reveal cascade (held while the 3D
 // monogram settles in).

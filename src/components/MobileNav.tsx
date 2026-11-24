@@ -62,7 +62,7 @@ export default function MobileNav() {
         </nav>
         <div className="mnav_foot">
           <VolumeToggle className="mnav_label" />
-          <span className="mnav_label">2011 - 2025 ©</span>
+          <span className="mnav_label">2011 - 2026 ©</span>
         </div>
       </div>
     </div>

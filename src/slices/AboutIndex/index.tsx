@@ -49,7 +49,7 @@ export default function AboutIndex({ slice }: AboutIndexProps) {
 
       <footer className="about_row about_row-bottom">
         <VolumeToggle className="about_label" />
-        <p className="about_label">2011 - 2025 ©</p>
+        <p className="about_label">2011 - 2026 ©</p>
       </footer>
     </div>
   );
