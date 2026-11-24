@@ -134,16 +134,15 @@
   .work_sidenav .work_label { letter-spacing: 0.14em; }
 
   .work_lead { position: relative; display: flex; align-items: center; }
-  /* Spacing matched to the homepage nav so the menu doesn't change between pages. */
-  .work_sidenav { display: flex; align-items: baseline; gap: var(--space-4); transition: opacity 560ms var(--hover-ease); }
   .work_nav_list { display: flex; gap: var(--space-4); }
-  /* On hover the menu fades out in place — no left→centre jump — so the title
-     gets clean space and nothing moves. The centred topnav swap is gone. */
-  .work_wrap[data-active] .work_sidenav { opacity: 0; pointer-events: none; }
+  /* The primary nav lives at the top centre and stays put while a project is
+     hovered — it reads light on the dark flood (via --work-text), so it's never
+     lost. The old mid-left menu that faded out is gone; the corner mark is home. */
+  .work_sidenav { display: none; }
 
   .work_topnav {
     position: absolute; left: 50%; translate: -50% 0;
-    display: none;
+    display: flex; gap: var(--space-5);
   }
 
   .work_dot { display: block; color: var(--work-text); translate: 0 0.5em; transition: color 500ms var(--hover-ease); }
@@ -155,8 +154,8 @@
   .work_plus:focus-visible svg { transform: rotate(90deg) scale(0.92); }
   .work_minus:hover svg,
   .work_minus:focus-visible svg { transform: scaleX(0.6); }
-  /* Minus stays hidden so the anchored menu never shifts; home is the name link. */
-  .work_minus { position: absolute; left: 0; top: 50%; translate: 0 -50%; display: none; }
+  /* Plus (right) and minus (left) frame the list at the vertical middle, per the Figma. */
+  .work_minus { position: absolute; left: 0; top: 50%; translate: 0 -50%; display: block; }
 
   .work_center { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; }
   .work_title {
