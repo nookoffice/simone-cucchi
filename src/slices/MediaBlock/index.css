@@ -1,0 +1,85 @@
+@layer components {
+  .csm_section {
+    background-color: #0a0607;
+    color: var(--light-100);
+    padding: var(--section-space-medium) var(--site-margin);
+  }
+  /* Section backgrounds, matching the Figma panels. */
+  .csm_section[data-tone="black"] { background-color: #000000; }
+  .csm_section[data-tone="light"] { background-color: #f6f6f6; color: var(--dark-800); }
+  .csm_section[data-tone="maroon"] {
+    background-color: #0a0002;
+    background-image: radial-gradient(
+      110% 150% at 44% -8%,
+      #76384a 0%, #611c2e 14.8%, #570e20 22.1%, #4c0012 29.5%,
+      #260009 64.8%, #130005 82.4%, #0a0002 91.2%, #000000 100%
+    );
+  }
+
+  .csm_eyebrow {
+    font-family: var(--primary-family);
+    font-size: var(--text-small);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 var(--space-6);
+  }
+  .csm_section[data-tone="light"] .csm_eyebrow { color: rgba(0, 0, 0, 0.55); }
+
+  /* Media keeps the exported frame's natural proportions (height auto) so the
+     section matches Figma exactly, rather than cropping to a fixed ratio. */
+  .csm_media {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-main);
+  }
+
+  .csm_caption {
+    font-family: var(--primary-family);
+    font-size: var(--text-small);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    margin: var(--space-5) 0 0;
+  }
+
+  /* One-up, full-width image. */
+  .csm_section[data-variation="one"] .csm_single { width: 100%; }
+
+  /* One-up, centered device: the phone sits in the middle of the band and the
+     eyebrow floats at the left edge, vertically centered (Figma "Personalisation"). */
+  .csm_section[data-layout="phone"] { position: relative; }
+  .csm_section[data-layout="phone"] .csm_single {
+    max-width: clamp(13rem, 22vw, 20rem);
+    margin-inline: auto;
+  }
+  .csm_section[data-layout="phone"] .csm_media { border-radius: 0; }
+  .csm_section[data-layout="phone"] .csm_eyebrow {
+    position: absolute;
+    left: var(--site-margin);
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+  }
+
+  /* Two-up: two media columns, collapsing to one on mobile. */
+  .csm_grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1rem, 2vw, 2.5rem);
+  }
+
+  /* Video slot: desktop/mobile swap mirrors ResponsiveImage's 48rem breakpoint. */
+  .csm_media-mob { display: none; }
+  @media (width < 48rem) {
+    .csm_grid { grid-template-columns: 1fr; }
+    .csm_section[data-layout="phone"] .csm_eyebrow {
+      position: static;
+      transform: none;
+      margin: 0 0 var(--space-6);
+    }
+    .csm_media-desk { display: none; }
+    .csm_media-mob { display: block; }
+  }
+}

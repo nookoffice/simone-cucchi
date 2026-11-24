@@ -27,6 +27,9 @@
             "section_image": {
               "type": "SharedSlice"
             },
+            "media_block": {
+              "type": "SharedSlice"
+            },
             "stat_grid": {
               "type": "SharedSlice"
             },

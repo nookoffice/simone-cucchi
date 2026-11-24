@@ -5,6 +5,7 @@ import CaseStudyHero from "./CaseStudyHero";
 import CreditList from "./CreditList";
 import Hero from "./Hero";
 import LeadStatement from "./LeadStatement";
+import MediaBlock from "./MediaBlock";
 import NextProject from "./NextProject";
 import PhoneScreens from "./PhoneScreens";
 import SectionImage from "./SectionImage";
@@ -18,6 +19,7 @@ export const components = {
 	case_study_hero: CaseStudyHero,
 	phone_screens: PhoneScreens,
 	section_image: SectionImage,
+	media_block: MediaBlock,
 	stat_grid: StatGrid,
 	lead_statement: LeadStatement,
 	credit_list: CreditList,

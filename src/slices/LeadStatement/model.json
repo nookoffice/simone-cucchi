@@ -12,7 +12,9 @@
       "version": "",
       "primary": {
         "eyebrow": { "type": "Text", "config": { "label": "Eyebrow", "placeholder": "Section label" } },
-        "text": { "type": "StructuredText", "config": { "label": "Statement", "allowTargetBlank": false, "single": "paragraph" } }
+        "title": { "type": "Text", "config": { "label": "Title", "placeholder": "Optional large title" } },
+        "text": { "type": "StructuredText", "config": { "label": "Statement", "allowTargetBlank": false, "single": "paragraph" } },
+        "wide": { "type": "Boolean", "config": { "label": "Wide intro (title + text in two columns)", "default_value": false, "placeholder_false": "Narrow statement", "placeholder_true": "Wide intro" } }
       }
     }
   ]

@@ -106,7 +106,7 @@ interface HomepageDocumentData {
  */
 export type HomepageDocument<Lang extends string = string> = prismic.PrismicDocumentWithoutUID<Simplify<HomepageDocumentData>, "homepage", Lang>;
 
-type PageDocumentDataSlicesSlice = WorkListSlice | AboutIndexSlice | CaseStudyHeroSlice | PhoneScreensSlice | SectionImageSlice | StatGridSlice | LeadStatementSlice | CreditListSlice | NextProjectSlice
+type PageDocumentDataSlicesSlice = WorkListSlice | AboutIndexSlice | CaseStudyHeroSlice | PhoneScreensSlice | SectionImageSlice | MediaBlockSlice | StatGridSlice | LeadStatementSlice | CreditListSlice | NextProjectSlice
 
 /**
  * Content for Page documents
@@ -602,6 +602,118 @@ type SectionImageSliceVariation = SectionImageSliceDefault
 export type SectionImageSlice = prismic.SharedSlice<"section_image", SectionImageSliceVariation>;
 
 /**
+ * Primary content in *MediaBlock → One up → Primary*
+ */
+export interface MediaBlockSliceOneUpPrimary {
+	/**
+	 * Eyebrow field in *MediaBlock → One up → Primary*
+	 */
+	eyebrow: prismic.KeyTextField;
+
+	/**
+	 * Background field in *MediaBlock → One up → Primary*
+	 */
+	tone: prismic.SelectField<"dark" | "black" | "light" | "maroon", "filled">;
+
+	/**
+	 * Layout field in *MediaBlock → One up → Primary*
+	 */
+	layout: prismic.SelectField<"full" | "phone", "filled">;
+
+	/**
+	 * Image field in *MediaBlock → One up → Primary*
+	 */
+	image: prismic.ImageField<never>;
+
+	/**
+	 * Image (mobile) field in *MediaBlock → One up → Primary*
+	 */
+	image_mobile: prismic.ImageField<never>;
+
+	/**
+	 * Video field in *MediaBlock → One up → Primary*
+	 */
+	video: prismic.LinkToMediaField;
+
+	/**
+	 * Video (mobile) field in *MediaBlock → One up → Primary*
+	 */
+	video_mobile: prismic.LinkToMediaField;
+
+	/**
+	 * Caption field in *MediaBlock → One up → Primary*
+	 */
+	caption: prismic.KeyTextField;
+}
+
+/**
+ * One up variation for MediaBlock Slice
+ */
+export type MediaBlockSliceOneUp = prismic.SharedSliceVariation<"oneUp", Simplify<MediaBlockSliceOneUpPrimary>, never>;
+
+/**
+ * Primary content in *MediaBlock → Two up → Primary*
+ */
+export interface MediaBlockSliceTwoUpPrimary {
+	/**
+	 * Eyebrow field in *MediaBlock → Two up → Primary*
+	 */
+	eyebrow: prismic.KeyTextField;
+
+	/**
+	 * Background field in *MediaBlock → Two up → Primary*
+	 */
+	tone: prismic.SelectField<"dark" | "black" | "light" | "maroon", "filled">;
+
+	/**
+	 * Left image field in *MediaBlock → Two up → Primary*
+	 */
+	left_image: prismic.ImageField<never>;
+
+	/**
+	 * Left image (mobile) field in *MediaBlock → Two up → Primary*
+	 */
+	left_image_mobile: prismic.ImageField<never>;
+
+	/**
+	 * Left video field in *MediaBlock → Two up → Primary*
+	 */
+	left_video: prismic.LinkToMediaField;
+
+	/**
+	 * Right image field in *MediaBlock → Two up → Primary*
+	 */
+	right_image: prismic.ImageField<never>;
+
+	/**
+	 * Right image (mobile) field in *MediaBlock → Two up → Primary*
+	 */
+	right_image_mobile: prismic.ImageField<never>;
+
+	/**
+	 * Right video field in *MediaBlock → Two up → Primary*
+	 */
+	right_video: prismic.LinkToMediaField;
+}
+
+/**
+ * Two up variation for MediaBlock Slice
+ */
+export type MediaBlockSliceTwoUp = prismic.SharedSliceVariation<"twoUp", Simplify<MediaBlockSliceTwoUpPrimary>, never>;
+
+/**
+ * Slice variation for *MediaBlock*
+ */
+type MediaBlockSliceVariation = MediaBlockSliceOneUp | MediaBlockSliceTwoUp
+
+/**
+ * MediaBlock Shared Slice
+ *
+ * - **API ID**: `media_block`
+ */
+export type MediaBlockSlice = prismic.SharedSlice<"media_block", MediaBlockSliceVariation>;
+
+/**
  * Item in *StatGrid → Default → Primary → Stats*
  */
 export interface StatGridSliceDefaultPrimaryStatsItem {
@@ -663,9 +775,19 @@ export interface LeadStatementSliceDefaultPrimary {
 	eyebrow: prismic.KeyTextField;
 
 	/**
+	 * Title field in *LeadStatement → Default → Primary*
+	 */
+	title: prismic.KeyTextField;
+
+	/**
 	 * Statement field in *LeadStatement → Default → Primary*
 	 */
 	text: prismic.RichTextField;
+
+	/**
+	 * Wide intro field in *LeadStatement → Default → Primary*
+	 */
+	wide: prismic.BooleanField;
 }
 
 /**
@@ -832,6 +954,12 @@ declare module "@prismicio/client" {
 			SectionImageSliceDefaultPrimary,
 			SectionImageSliceVariation,
 			SectionImageSliceDefault,
+			MediaBlockSlice,
+			MediaBlockSliceOneUpPrimary,
+			MediaBlockSliceTwoUpPrimary,
+			MediaBlockSliceVariation,
+			MediaBlockSliceOneUp,
+			MediaBlockSliceTwoUp,
 			StatGridSlice,
 			StatGridSliceDefaultPrimaryStatsItem,
 			StatGridSliceDefaultPrimary,

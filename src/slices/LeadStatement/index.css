@@ -12,10 +12,37 @@
     color: rgba(255,255,255,0.6);
     margin: 0 0 var(--space-6);
   }
+  .csl_title {
+    font-family: var(--primary-family);
+    font-weight: var(--primary-regular);
+    font-size: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+    letter-spacing: var(--letter-spacing-wide);
+    text-transform: uppercase;
+    margin: 0;
+  }
   .csl_text {
     max-width: 22ch;
     font-family: var(--secondary-family);
     color: var(--light-100);
     margin: 0;
+  }
+
+  /* Wide intro: title left, statement right (stacks on mobile). The statement
+     becomes a readable body column rather than a short serif lead. */
+  .csl_section-wide .csl_body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+    align-items: start;
+  }
+  .csl_section-wide .csl_text {
+    max-width: 48ch;
+    font-family: var(--primary-family);
+    font-size: clamp(0.95rem, 0.88rem + 0.4vw, 1.1875rem);
+    line-height: 1.6;
+    color: rgba(255,255,255,0.82);
+  }
+  @media (width < 48rem) {
+    .csl_section-wide .csl_body { grid-template-columns: 1fr; gap: var(--space-5); }
   }
 }
