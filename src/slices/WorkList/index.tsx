@@ -4,6 +4,7 @@ import { type Content, isFilled } from "@prismicio/client";
 import { PrismicNextLink } from "@prismicio/next";
 import type { SliceComponentProps } from "@prismicio/react";
 import gsap from "gsap";
+import dynamic from "next/dynamic";
 import {
   type CSSProperties,
   useCallback,
@@ -21,6 +22,10 @@ import LogoMark from "@/components/LogoMark";
 import RollText from "@/components/RollText";
 import VolumeToggle from "@/components/VolumeToggle";
 import "./index.css";
+
+// Real-time WebGL glass for the slabs — client-only, lazily loaded. Falls back
+// to the CSS glass (which stays in the markup) when WebGL is unavailable.
+const WorkSlabs = dynamic(() => import("@/components/WorkSlabs"), { ssr: false });
 
 export type WorkListProps = SliceComponentProps<Content.WorkListSlice>;
 
@@ -41,6 +46,8 @@ function floodSlug(title?: string | null): string | undefined {
 export default function WorkList({ slice }: WorkListProps) {
   const projects = slice.primary.projects;
   const [active, setActive] = useState<number | null>(null);
+  // Once the WebGL slab canvas has painted, hide the CSS glass fallback.
+  const [slabsReady, setSlabsReady] = useState(false);
   // The title that's actually on screen lags `active`: whatever is showing has
   // to drop out of its mask before the next one is swapped in and rises up.
   const [displayed, setDisplayed] = useState<string | null>(null);
@@ -161,6 +168,7 @@ export default function WorkList({ slice }: WorkListProps) {
     <div
       className="work_wrap"
       data-active={activeProject ? "" : undefined}
+      data-webgl={slabsReady ? "" : undefined}
       style={wrapStyle}
     >
       {/* One flood layer per project, stacked. The active one fades in as the
@@ -181,6 +189,14 @@ export default function WorkList({ slice }: WorkListProps) {
           />
         ))}
       </div>
+
+      {/* Real-time glass slabs, layered above the flood and below the blocks. */}
+      <WorkSlabs
+        listRef={listRef}
+        count={projects.length}
+        activeIndex={active}
+        onReady={() => setSlabsReady(true)}
+      />
 
       <div className="work_frame">
         <div className="work_row work_row-top">

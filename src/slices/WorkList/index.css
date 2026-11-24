@@ -23,6 +23,13 @@
 
   .work_bg { position: absolute; inset: 0; z-index: -1; background-color: #e2e2e2; }
 
+  /* Real-time WebGL glass slabs: a click-through canvas above the flood but below
+     the blocks + title, so resting blocks (transparent once the CSS glass is
+     hidden) reveal the glass behind them and the flood tints it. */
+  .work_slabs { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+  /* With WebGL live, drop the CSS glass so only the real glass shows. */
+  .work_wrap[data-webgl] .work_block_glass { opacity: 0; }
+
   /* One flood layer per project, stacked. Only the active one is opaque; moving
      between projects fades the previous out as the next fades in, so the colours
      cross-dissolve slowly rather than hard-swapping. */
