@@ -27,7 +27,9 @@ import * as THREE from "three";
  * open block's slab is hidden so its teaser image reads sharp.
  */
 
-/** Fresnel dark-edge rim (shared across slabs) — same recipe as the hero mark. */
+/** Fresnel edge rim (shared across slabs): a thin, soft dark outline around the
+    rounded edge — the delicate dark line the reference slab has, not a heavy
+    black border. */
 function useRimMaterial() {
   return useMemo(
     () =>
@@ -35,9 +37,9 @@ function useRimMaterial() {
         transparent: true,
         depthWrite: false,
         uniforms: {
-          uColor: { value: new THREE.Color("#060608") },
-          uPower: { value: 1.8 },
-          uIntensity: { value: 1.7 },
+          uColor: { value: new THREE.Color("#2a2c31") },
+          uPower: { value: 3.2 },
+          uIntensity: { value: 0.85 },
         },
         vertexShader: `
           varying vec3 vNormal;
@@ -66,20 +68,19 @@ function useRimMaterial() {
   );
 }
 
-/** Self-contained dark studio — identical rig to the homepage monogram. */
+/** Light, low-contrast studio tuned for a flat clear pane: a soft grey surround
+    (so reflections stay neutral and the grey page shows through rather than a
+    metallic gradient) with one gentle bright band above for the top highlight. */
 function Studio() {
   return (
     <>
-      <ambientLight intensity={0.08} />
-      {/* Narrow side/top panels only — no broad front light, so the flat slab
-          faces stay clear (grey shows through) rather than washing white; the
-          edges still catch bright streaks. */}
-      <Environment resolution={512} environmentIntensity={0.4}>
-        <color attach="background" args={["#07070a"]} />
-        <Lightformer form="rect" intensity={1.8} color="#ffffff" position={[0, 5, 1]} scale={[10, 2.5, 1]} />
-        <Lightformer form="rect" intensity={2.8} color="#eef2f8" position={[-5, 1, 2]} rotation={[0, Math.PI / 2, 0]} scale={[5, 9, 1]} />
-        <Lightformer form="rect" intensity={2.8} color="#ffffff" position={[5, 0, 2]} rotation={[0, -Math.PI / 2, 0]} scale={[5, 9, 1]} />
-        <Lightformer form="ring" intensity={1.2} color="#ffffff" position={[0, 0, -5]} scale={[7, 7, 1]} />
+      <ambientLight intensity={0.8} />
+      <Environment resolution={256} environmentIntensity={1.0}>
+        <color attach="background" args={["#dcdee2"]} />
+        {/* Soft bright band above → the gentle highlight along the slab's top. */}
+        <Lightformer form="rect" intensity={1.5} color="#ffffff" position={[0, 7, 4]} scale={[16, 2, 1]} />
+        {/* Slightly dimmer, cooler fill below for a faint vertical fall-off. */}
+        <Lightformer form="rect" intensity={0.5} color="#c6cad0" position={[0, -7, 4]} scale={[16, 3, 1]} />
       </Environment>
     </>
   );
@@ -131,9 +132,9 @@ function Slabs({
     });
   });
 
-  // Depth/radius tuned to the bar (≈40px tall) so the glass has real thickness
-  // at its edges, like the Figma slab.
-  const depth = 13;
+  // A thin pane — a shallow depth keeps the rounded edges delicate (a deep box
+  // reads as a chunky chrome button, not glass).
+  const depth = 6;
   const radius = Math.min(dims.h / 2.6, 8);
   return (
     <>
@@ -151,18 +152,15 @@ function Slabs({
               background={bg}
               transmissionSampler
               transmission={1}
-              thickness={7}
-              roughness={0.06}
-              ior={1.5}
-              chromaticAberration={0.1}
-              anisotropicBlur={0.1}
-              samples={10}
+              thickness={1.5}
+              roughness={0}
+              ior={1.18}
+              chromaticAberration={0.02}
+              anisotropicBlur={0}
+              samples={8}
               resolution={512}
-              backside
-              backsideThickness={2.5}
               color="#ffffff"
-              attenuationColor="#eef0f4"
-              attenuationDistance={40}
+              attenuationDistance={80}
             />
           </RoundedBox>
           <RoundedBox
