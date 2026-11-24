@@ -1,0 +1,690 @@
+{
+  "christies-app": {
+    "slices": [
+      {
+        "variation": "default",
+        "version": "",
+        "items": [],
+        "primary": {
+          "title": "Christie's App",
+          "discipline": "Digital product design",
+          "intro": [
+            {
+              "type": "paragraph",
+              "text": "The Christie's App is one of the key destinations of Christie's top clients, who are highly engaged in the auction world. After re-launching a new simplified version of the App in 2021, it was necessary to build upon that, focusing on personalisation, new technology and brand. After analysing the data, we moved the overall app's focus, powering up the three most used areas: My Account, Search and Support. We created a brand new browse experience, combining auctions, private sales, stories and trends, all into one intuitive Explore section.",
+              "spans": []
+            }
+          ],
+          "image": {
+            "dimensions": {
+              "width": 152,
+              "height": 85
+            },
+            "alt": "Christie's App",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/OB454nKzLYoJreLc_christies-app.png?auto=format,compress",
+            "id": "OB454nKzLYoJreLc",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "image_mobile": {}
+        },
+        "id": "case_study_hero$946ecc12-9b59-4974-a121-f9cadd03cc86",
+        "slice_type": "case_study_hero",
+        "slice_label": null
+      },
+      {
+        "variation": "default",
+        "version": "",
+        "items": [],
+        "primary": {
+          "eyebrow": "",
+          "title": "Christie's app",
+          "text": [
+            {
+              "type": "paragraph",
+              "text": "The Christie's App is one of the key destinations of Christie's top clients, who are highly engaged in the auction world. After re-launching a new simplified version of the App in 2021, it was necessary to build upon that, focusing on personalisation, new technology and brand. After analysing the data, we moved the overall app's focus, powering up the three most used areas: My Account, Search and Support. We created a brand new browse experience, combining auctions, private sales, stories and trends, all into one intuitive Explore section.",
+              "spans": []
+            }
+          ],
+          "wide": true
+        },
+        "id": "lead_statement$2871c6d1-4848-4a8b-a1cf-9601d3e0bada",
+        "slice_type": "lead_statement",
+        "slice_label": null
+      },
+      {
+        "variation": "oneUp",
+        "version": "",
+        "items": [],
+        "primary": {
+          "eyebrow": "",
+          "tone": "dark",
+          "layout": "full",
+          "image": {
+            "dimensions": {
+              "width": 1824,
+              "height": 1026
+            },
+            "alt": "Christie's App — My Christie's, bids and collecting stories across devices",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/9gsU8hReeP0ivmcA_app-devices.png?auto=format,compress",
+            "id": "9gsU8hReeP0ivmcA",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "image_mobile": {
+            "dimensions": {
+              "width": 364,
+              "height": 413
+            },
+            "alt": "Christie's App devices",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/Z1OMp206YHx76Lxv_app-devices-m.png?auto=format,compress",
+            "id": "Z1OMp206YHx76Lxv",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "video": {
+            "link_type": "Media"
+          },
+          "video_mobile": {
+            "link_type": "Media"
+          },
+          "caption": ""
+        },
+        "id": "media_block$923ffdc5-60eb-4e97-8fa9-8d96205311a8",
+        "slice_type": "media_block",
+        "slice_label": null
+      },
+      {
+        "variation": "oneUp",
+        "version": "",
+        "items": [],
+        "primary": {
+          "eyebrow": "Personalisation",
+          "tone": "black",
+          "layout": "phone",
+          "image": {
+            "dimensions": {
+              "width": 474,
+              "height": 914
+            },
+            "alt": "Christie's App personalised Discover screen",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/xe8FJP7Fs4K4hLtL_app-personalisation.png?auto=format%2Ccompress&rect=0%2C0%2C474%2C914&w=474&h=914",
+            "id": "xe8FJP7Fs4K4hLtL",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "image_mobile": {
+            "dimensions": {
+              "width": 191,
+              "height": 368
+            },
+            "alt": "Christie's App Discover screen",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/EePr6zplbGIKQmS__app-personalisation-m.png?auto=format,compress",
+            "id": "EePr6zplbGIKQmS_",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "video": {
+            "link_type": "Media"
+          },
+          "video_mobile": {
+            "link_type": "Media"
+          },
+          "caption": ""
+        },
+        "id": "media_block$21e7cf5b-73b7-4759-9e40-04c4ca7893a8",
+        "slice_type": "media_block",
+        "slice_label": null
+      },
+      {
+        "variation": "oneUp",
+        "version": "",
+        "items": [],
+        "primary": {
+          "eyebrow": "",
+          "tone": "dark",
+          "layout": "full",
+          "image": {
+            "dimensions": {
+              "width": 1824,
+              "height": 1026
+            },
+            "alt": "Christie's App Explore screen shown in a gallery",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/r4yumSPAapTRpqJC_app-newtech.png?auto=format,compress",
+            "id": "r4yumSPAapTRpqJC",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "image_mobile": {
+            "dimensions": {
+              "width": 364,
+              "height": 414
+            },
+            "alt": "Christie's App Explore screen",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/3BKdaBdsdvZd1lQ5_app-newtech-m.png?auto=format,compress",
+            "id": "3BKdaBdsdvZd1lQ5",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "video": {
+            "link_type": "Media"
+          },
+          "video_mobile": {
+            "link_type": "Media"
+          },
+          "caption": ""
+        },
+        "id": "media_block$da459f2e-aa9d-46f1-96c2-8850db6dca15",
+        "slice_type": "media_block",
+        "slice_label": null
+      },
+      {
+        "variation": "twoUp",
+        "version": "",
+        "items": [],
+        "primary": {
+          "eyebrow": "",
+          "tone": "dark",
+          "left_image": {
+            "dimensions": {
+              "width": 904,
+              "height": 1026
+            },
+            "alt": "Christie's App loading screen",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/DPsyTQsI30FFZM24_app-pair-left.png?auto=format,compress",
+            "id": "DPsyTQsI30FFZM24",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "left_image_mobile": {
+            "dimensions": {
+              "width": 364,
+              "height": 414
+            },
+            "alt": "Christie's App loading screen",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/lvzQ82zAELDSYOQT_app-pair-left-m.png?auto=format,compress",
+            "id": "lvzQ82zAELDSYOQT",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "left_video": {
+            "link_type": "Media"
+          },
+          "right_image": {
+            "dimensions": {
+              "width": 898,
+              "height": 1026
+            },
+            "alt": "Christie's App My Lots bids screen",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/WSTyuL0J07Wrxi7b_app-pair-right.png?auto=format,compress",
+            "id": "WSTyuL0J07Wrxi7b",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "right_image_mobile": {
+            "dimensions": {
+              "width": 364,
+              "height": 417
+            },
+            "alt": "Christie's App My Lots bids screen",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/OCcyqPhYnaMQsWS-_app-pair-right-m.png?auto=format,compress",
+            "id": "OCcyqPhYnaMQsWS-",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "right_video": {
+            "link_type": "Media"
+          }
+        },
+        "id": "media_block$47836486-e67b-45ab-b11e-a353e5c77ef7",
+        "slice_type": "media_block",
+        "slice_label": null
+      },
+      {
+        "variation": "default",
+        "version": "",
+        "items": [],
+        "primary": {
+          "eyebrow": "App performance",
+          "caption": "Change YOY",
+          "stats": [
+            {
+              "value": "+6%",
+              "label": "Follow sales"
+            },
+            {
+              "value": "+24%",
+              "label": "Sale registrants and bidders"
+            },
+            {
+              "value": "+90%",
+              "label": "Full onboarding registration"
+            },
+            {
+              "value": "+23%",
+              "label": "Online sale registration"
+            }
+          ]
+        },
+        "id": "stat_grid$945260eb-1201-4321-8ea6-a1db7545881c",
+        "slice_type": "stat_grid",
+        "slice_label": null
+      },
+      {
+        "variation": "oneUp",
+        "version": "",
+        "items": [],
+        "primary": {
+          "eyebrow": "",
+          "tone": "dark",
+          "layout": "full",
+          "image": {
+            "dimensions": {
+              "width": 1824,
+              "height": 1026
+            },
+            "alt": "Christie's App brand photography",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/66C4E_tdYr86LPQK_app-gallery.png?auto=format,compress",
+            "id": "66C4E_tdYr86LPQK",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "image_mobile": {
+            "dimensions": {
+              "width": 364,
+              "height": 205
+            },
+            "alt": "Christie's App brand photography",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/Qo6bqwIUcOKn-VcX_app-gallery-m.png?auto=format,compress",
+            "id": "Qo6bqwIUcOKn-VcX",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "video": {
+            "link_type": "Media"
+          },
+          "video_mobile": {
+            "link_type": "Media"
+          },
+          "caption": ""
+        },
+        "id": "media_block$dab93bdd-acf7-41b0-bba3-ee7aa779ef27",
+        "slice_type": "media_block",
+        "slice_label": null
+      },
+      {
+        "variation": "default",
+        "version": "",
+        "items": [],
+        "primary": {
+          "eyebrow": "The goal",
+          "title": null,
+          "text": [
+            {
+              "type": "paragraph",
+              "text": "Despite a decline in overall traffic during 2024, the redesigned Onboarding journey, Explore page, Calendar page, and My Account have resulted in an increase in qualified users (transactors) entering the sale registration and bidding funnel.",
+              "spans": []
+            }
+          ],
+          "wide": false
+        },
+        "id": "lead_statement$bbbb8a31-46b5-4ee7-a31b-dc6ce87aa95e",
+        "slice_type": "lead_statement",
+        "slice_label": null
+      },
+      {
+        "variation": "default",
+        "version": "",
+        "items": [],
+        "primary": {
+          "eyebrow": "Team",
+          "credits": [
+            {
+              "role": "Head of Digital Design",
+              "name": "Jon-Ross Le Haye"
+            },
+            {
+              "role": "Product Design Lead",
+              "name": "Simone Cucchi"
+            },
+            {
+              "role": "Senior Product Designer",
+              "name": "Dan Hart"
+            },
+            {
+              "role": "Motion video",
+              "name": "Services Généraux"
+            }
+          ]
+        },
+        "id": "credit_list$6ce8fde0-24fe-41a2-9643-71a9f57b05c3",
+        "slice_type": "credit_list",
+        "slice_label": null
+      },
+      {
+        "variation": "default",
+        "version": "",
+        "items": [],
+        "primary": {
+          "title": "Christie's 3.0",
+          "subtitle": "Product design | Web 3 | Art direction",
+          "image": {
+            "dimensions": {
+              "width": 1400,
+              "height": 788
+            },
+            "alt": "Christie's 3.0",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/8knP_lEq1pj1o6of_next-christies30.png?auto=format,compress",
+            "id": "8knP_lEq1pj1o6of",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "link": {
+            "link_type": "Web",
+            "key": "335d7a2a-4ebd-4911-bb4e-7b329e0df7fb",
+            "url": "/work/christies-30"
+          },
+          "image_mobile": {}
+        },
+        "id": "next_project$a50bb889-8451-4891-86cd-8e2de65235a6",
+        "slice_type": "next_project",
+        "slice_label": null
+      }
+    ],
+    "meta_title": "Christie's App — Simone Cucchi",
+    "meta_description": "Case study: redesigning the Christie's App around personalisation, new technology and brand, lifting registration and bidding.",
+    "meta_image": {}
+  },
+  "christies-30": {
+    "slices": [
+      {
+        "variation": "default",
+        "version": "",
+        "items": [],
+        "primary": {
+          "title": "Christie's 3.0",
+          "discipline": "Product design | Web3 | Art direction",
+          "intro": [
+            {
+              "type": "paragraph",
+              "text": "Christie's 3.0 brought the auction house on-chain: a web3 platform for buying and selling digital art, designed to make a new medium feel native to Christie's. (Starting copy — refine in Prismic.)",
+              "spans": []
+            }
+          ],
+          "image": {
+            "dimensions": {
+              "width": 1400,
+              "height": 788
+            },
+            "alt": "Christie's 3.0",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/S4Sgiawu1wdP-3mZ_next-christies30.png?auto=format,compress",
+            "id": "S4Sgiawu1wdP-3mZ",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "image_mobile": {}
+        },
+        "id": "case_study_hero$480c7193-9602-4568-acf9-7b500be2002e",
+        "slice_type": "case_study_hero",
+        "slice_label": null
+      },
+      {
+        "variation": "default",
+        "version": "",
+        "items": [],
+        "primary": {
+          "eyebrow": "Overview",
+          "image": {
+            "dimensions": {
+              "width": 304,
+              "height": 170
+            },
+            "alt": "Christie's 3.0 platform",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/w8wlK6FbnZcIlMOY_christies-30.png?auto=format,compress",
+            "id": "w8wlK6FbnZcIlMOY",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "image_mobile": {}
+        },
+        "id": "section_image$9c5621dd-15ca-4a34-bb30-7b0b80609138",
+        "slice_type": "section_image",
+        "slice_label": null
+      },
+      {
+        "variation": "default",
+        "version": "",
+        "items": [],
+        "primary": {
+          "eyebrow": "The idea",
+          "title": null,
+          "text": [
+            {
+              "type": "paragraph",
+              "text": "A collector-first web3 experience that treats digital art with the same rigour as the saleroom.",
+              "spans": []
+            }
+          ],
+          "wide": null
+        },
+        "id": "lead_statement$8bc5ff86-af5b-45e2-b625-19c66adfd636",
+        "slice_type": "lead_statement",
+        "slice_label": null
+      },
+      {
+        "variation": "default",
+        "version": "",
+        "items": [],
+        "primary": {
+          "title": "T***",
+          "subtitle": "Product design | Art direction",
+          "image": {
+            "dimensions": {
+              "width": 152,
+              "height": 85
+            },
+            "alt": "Christie's App",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/CuTu8DJJM0G9KBe9_christies-app.png?auto=format,compress",
+            "id": "CuTu8DJJM0G9KBe9",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "link": {
+            "link_type": "Web",
+            "key": "4eb96abf-5522-4b77-97b3-425b57989405",
+            "url": "/work/project-t"
+          },
+          "image_mobile": {}
+        },
+        "id": "next_project$ae87814a-b7a7-4444-8cb7-503c7b6ccd2d",
+        "slice_type": "next_project",
+        "slice_label": null
+      }
+    ],
+    "meta_title": "Christie's 3.0 — Simone Cucchi",
+    "meta_description": "Case study: Christie's 3.0, the auction house's on-chain platform for digital art.",
+    "meta_image": {}
+  },
+  "project-t": {
+    "slices": [
+      {
+        "variation": "default",
+        "version": "",
+        "items": [],
+        "primary": {
+          "title": "T***",
+          "discipline": "Product design | Art direction",
+          "intro": [
+            {
+              "type": "paragraph",
+              "text": "A confidential fashion project spanning product design and art direction. (Starting copy — refine in Prismic.)",
+              "spans": []
+            }
+          ],
+          "image": {
+            "dimensions": {
+              "width": 1408,
+              "height": 792
+            },
+            "alt": "T*** fashion project",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/2s5pt_ubLOnrnQq3_project-t.png?auto=format,compress",
+            "id": "2s5pt_ubLOnrnQq3",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "image_mobile": {}
+        },
+        "id": "case_study_hero$8f4200ef-7bd6-4167-a2e2-076147b04236",
+        "slice_type": "case_study_hero",
+        "slice_label": null
+      },
+      {
+        "variation": "default",
+        "version": "",
+        "items": [],
+        "primary": {
+          "eyebrow": "The work",
+          "title": null,
+          "text": [
+            {
+              "type": "paragraph",
+              "text": "Design direction across product and campaign for a luxury fashion house.",
+              "spans": []
+            }
+          ],
+          "wide": null
+        },
+        "id": "lead_statement$d216ed4f-f654-45d8-895f-cc10d6b0f9cd",
+        "slice_type": "lead_statement",
+        "slice_label": null
+      },
+      {
+        "variation": "default",
+        "version": "",
+        "items": [],
+        "primary": {
+          "title": "Christie's App",
+          "subtitle": "Digital product design",
+          "image": {
+            "dimensions": {
+              "width": 152,
+              "height": 85
+            },
+            "alt": "Christie's App",
+            "copyright": null,
+            "url": "https://images.prismic.io/simone-cucchi/_8FZgi2i5W7xFOUB_christies-app.png?auto=format,compress",
+            "id": "_8FZgi2i5W7xFOUB",
+            "edit": {
+              "x": 0,
+              "y": 0,
+              "zoom": 1,
+              "background": "transparent"
+            }
+          },
+          "link": {
+            "link_type": "Web",
+            "key": "f66e3894-8eb0-47bd-b913-8f2b743769b7",
+            "url": "/work/christies-app"
+          },
+          "image_mobile": {}
+        },
+        "id": "next_project$340e7275-bd30-4288-8f4c-6a275fc74176",
+        "slice_type": "next_project",
+        "slice_label": null
+      }
+    ],
+    "meta_title": "T*** — Simone Cucchi",
+    "meta_description": "Fashion product design and art direction for a luxury house.",
+    "meta_image": {}
+  }
+}
