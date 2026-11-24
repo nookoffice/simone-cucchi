@@ -5,6 +5,29 @@
     background-color: #0a0002;
   }
 
+  /* Paint the document root with the project's flood while a case study is
+     mounted, so the page-transition backdrop is already maroon. During the
+     view transition the live content is snapshotted and hidden, which would
+     otherwise expose the light root (--light-200) as a white flash between
+     the old page fading out and the new one fading in. Matching the hero's
+     gradient means the outgoing work page dissolves straight into the target
+     colour instead of blinking white. */
+  :root:has(.csh_hero) {
+    background-color: #0a0002;
+    background-image: radial-gradient(
+      110% 150% at 44% -8%,
+      #76384a 0%,
+      #611c2e 14.8%,
+      #570e20 22.1%,
+      #4c0012 29.5%,
+      #260009 64.8%,
+      #130005 82.4%,
+      #0a0002 91.2%,
+      #000000 100%
+    );
+    background-attachment: fixed;
+  }
+
   .csh_hero {
     position: relative;
     display: flex;
@@ -172,9 +195,19 @@
     translate: 0 -50%;
     background: currentColor;
     opacity: 0.4;
-    transition: opacity 320ms var(--hover-ease);
+    transform: translateX(0);
+    transition:
+      transform 520ms cubic-bezier(0.33, 1, 0.5, 1),
+      opacity 420ms var(--hover-ease);
   }
   .csprog_tick:hover::before { opacity: 0.7; }
+  /* The line under the current (boxed) section slides out to the left and
+     fades, leaving the gliding box empty; it slides back in once the box moves
+     on to the next section. Paced to the box's own glide so they move as one. */
+  .csprog_tick[aria-current="true"]::before {
+    transform: translateX(-115%);
+    opacity: 0;
+  }
   /* The one boxed outline for the current section glides smoothly between ticks
      as you scroll (pitch = tick height 11px + gap 7px = 18px). */
   .csprog_box {
