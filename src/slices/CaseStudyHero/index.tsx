@@ -6,6 +6,7 @@ import type { SliceComponentProps } from "@prismicio/react";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
 import { CONTACT_EMAIL } from "@/consts";
+import CaseStudyProgress from "@/components/CaseStudyProgress";
 import ResponsiveImage from "@/components/ResponsiveImage";
 import RollText from "@/components/RollText";
 import VolumeToggle from "@/components/VolumeToggle";
@@ -46,7 +47,7 @@ export default function CaseStudyHero({ slice }: CaseStudyHeroProps) {
     // The card is a sized box: state 2 is a ~73% centred card (CSS default), full
     // is edge-to-edge. The work-card view transition morphs into state 2.
     const FULL = { top: "0%", left: "0%", width: "100%", height: "100%", borderRadius: 0 };
-    const STATE2 = { top: "13%", left: "13.5%", width: "73%", height: "74%", borderRadius: 14 };
+    const STATE2 = { top: "13.3%", left: "13.3%", width: "73.3%", height: "73.3%", borderRadius: 20 };
 
     if (reduce) {
       gsap.set(card, FULL);
@@ -83,8 +84,12 @@ export default function CaseStudyHero({ slice }: CaseStudyHeroProps) {
     } catch {
       /* ignore */
     }
-    const capIn = fromWork ? 1 : 0.3;
-    const expandAt = fromWork ? 1.8 : 1.2;
+    const capIn = fromWork ? 1 : 0.35;
+    // Let the title fade fully in, hold it clearly readable for ~1s, THEN expand
+    // — so the caption doesn't flash up and vanish.
+    const capInDuration = 0.5;
+    const hold = 1.05;
+    const expandAt = capIn + capInDuration + hold;
 
     // State 2 holds (title + discipline centred on the card), then the card
     // expands to full-bleed as the caption fades out and the lead comes in.
@@ -92,7 +97,7 @@ export default function CaseStudyHero({ slice }: CaseStudyHeroProps) {
     gsap.set(center, { autoAlpha: 0 });
 
     const tl = gsap.timeline();
-    tl.to(center, { autoAlpha: 1, duration: 0.5, ease: "power2.out" }, capIn);
+    tl.to(center, { autoAlpha: 1, duration: capInDuration, ease: "power2.out" }, capIn);
     tl.to(card, { ...FULL, duration: 1.2, ease: "power3.inOut" }, expandAt);
     tl.to(center, { autoAlpha: 0, duration: 0.5 }, "<");
     tl.to(
@@ -150,6 +155,16 @@ export default function CaseStudyHero({ slice }: CaseStudyHeroProps) {
           <p className="csh_label">2011 - 2025 ©</p>
         </div>
       </div>
+
+      {/* Decorative minus on the left edge, mirroring the right-edge progress. */}
+      <span className="csh_minus" aria-hidden="true">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+          <path d="M0 22H44" stroke="currentColor" strokeWidth="2" />
+        </svg>
+      </span>
+
+      {/* Fixed per-section scroll-position indicator (right edge). */}
+      <CaseStudyProgress />
     </header>
   );
 }
