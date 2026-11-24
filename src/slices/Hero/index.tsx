@@ -51,6 +51,8 @@ const FLICKER_MS = 1150;
  */
 export default function Hero({ slice }: HeroProps) {
   const rootRef = useRef<HTMLElement>(null);
+  // Editable in Prismic; falls back to the studio's London coordinates.
+  const coordinates = slice.primary.coordinates || COORDINATES;
 
   useEffect(() => {
     const root = rootRef.current;
@@ -107,7 +109,7 @@ export default function Hero({ slice }: HeroProps) {
           </span>
           <span className="hero_mask">
             <span className="hero_rise">
-              <span className="hero_label">{COORDINATES}</span>
+              <span className="hero_label">{coordinates}</span>
             </span>
           </span>
         </div>

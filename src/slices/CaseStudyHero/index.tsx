@@ -140,7 +140,7 @@ export default function CaseStudyHero({ slice }: CaseStudyHeroProps) {
             <PrismicNextLink className="csh_label nav-underline" href="/about"><RollText text="About" /></PrismicNextLink>
             <a className="csh_label nav-underline" href={`mailto:${CONTACT_EMAIL}`}><RollText text="Contact" /></a>
           </nav>
-          <p className="csh_label">51.5072° N, 0.1276° W</p>
+          <p className="csh_label">{slice.primary.coordinates || "51.5072° N, 0.1276° W"}</p>
         </div>
 
         <div className="csh_lead">

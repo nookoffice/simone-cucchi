@@ -190,7 +190,7 @@ export default function WorkList({ slice }: WorkListProps) {
             <PrismicNextLink className="work_label nav-underline" href="/about"><RollText text="About" /></PrismicNextLink>
             <a className="work_label nav-underline" href={`mailto:${CONTACT_EMAIL}`}><RollText text="Contact" /></a>
           </nav>
-          <p className="work_label">51.5072° N, 0.1276° W</p>
+          <p className="work_label">{slice.primary.coordinates || "51.5072° N, 0.1276° W"}</p>
         </div>
 
         <div className="work_row work_row-mid">

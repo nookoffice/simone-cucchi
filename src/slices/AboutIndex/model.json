@@ -21,6 +21,10 @@
               "entry": { "type": "Text", "config": { "label": "Entry", "placeholder": "Client | Role" } }
             }
           }
+        },
+        "coordinates": {
+          "type": "Text",
+          "config": { "label": "Coordinates", "placeholder": "41.902782° N, 12.496366° E" }
         }
       }
     }

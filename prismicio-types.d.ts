@@ -310,6 +310,11 @@ export interface HeroSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/image
 	 */
 	image: prismic.ImageField<never>;
+
+	/**
+	 * Coordinates field in *Hero → Default → Primary*
+	 */
+	coordinates: prismic.KeyTextField;
 }
 
 /**
@@ -393,6 +398,11 @@ export interface WorkListSliceDefaultPrimary {
 	 * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
 	 */
 	projects: prismic.GroupField<Simplify<WorkListSliceDefaultPrimaryProjectsItem>>;
+
+	/**
+	 * Coordinates field in *WorkList → Default → Primary*
+	 */
+	coordinates: prismic.KeyTextField;
 }
 
 /**
@@ -446,6 +456,11 @@ export interface AboutIndexSliceDefaultPrimary {
 	 * Experience field in *AboutIndex → Default → Primary*
 	 */
 	experience: prismic.GroupField<Simplify<AboutIndexSliceDefaultPrimaryExperienceItem>>;
+
+	/**
+	 * Coordinates field in *AboutIndex → Default → Primary*
+	 */
+	coordinates: prismic.KeyTextField;
 }
 
 /**
@@ -493,6 +508,11 @@ export interface CaseStudyHeroSliceDefaultPrimary {
 	 * Background (mobile) field in *CaseStudyHero → Default → Primary*
 	 */
 	image_mobile: prismic.ImageField<never>;
+
+	/**
+	 * Coordinates field in *CaseStudyHero → Default → Primary*
+	 */
+	coordinates: prismic.KeyTextField;
 }
 
 /**

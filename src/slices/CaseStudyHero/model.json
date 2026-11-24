@@ -48,6 +48,13 @@
             "constraint": {},
             "thumbnails": []
           }
+        },
+        "coordinates": {
+          "type": "Text",
+          "config": {
+            "label": "Coordinates",
+            "placeholder": "51.5072° N, 0.1276° W"
+          }
         }
       }
     }

@@ -26,7 +26,7 @@ export default function AboutIndex({ slice }: AboutIndexProps) {
           <PrismicNextLink className="about_label nav-underline is-active" href="/about" aria-current="page"><RollText text="About" /></PrismicNextLink>
           <a className="about_label nav-underline" href={`mailto:${CONTACT_EMAIL}`}><RollText text="Contact" /></a>
         </nav>
-        <p className="about_label">41.902782° N, 12.496366° E</p>
+        <p className="about_label">{slice.primary.coordinates || "41.902782° N, 12.496366° E"}</p>
       </header>
 
       {isFilled.richText(intro) && (
